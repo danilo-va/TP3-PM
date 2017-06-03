@@ -41,6 +41,7 @@
     <!-- Logo -->
     <a href="inicio.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Messenger</b></span>
     </a>
@@ -63,7 +64,7 @@
               <span class="label label-success">1</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Você tem 1 nova mensagem</li>
+              <li class="header text-center"><b>Conversas</b></li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
@@ -92,12 +93,12 @@
               <span class="label label-warning">1</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Você tem 1 nova solicitação de amizade</li>
+              <li class="header text-center"><b>Solicitações de amizade</b></li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li><!-- start message -->
-                    <a href="chat.html">
+                    <a>
                       <div class="pull-left">
                         <img src="img/rafael.jpg" class="img-circle" alt="User Image">
                       </div>
@@ -135,7 +136,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                  <a href="#" class="btn btn-default btn-flat">Editar perfil</a>
                 </div>
                 <div class="pull-right">
                   <a href="login.html" class="btn btn-default btn-flat">Encerrar sessão</a>
@@ -145,8 +146,17 @@
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
+            <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-gears"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header text-center"><b>Configurações</b></li>
+                <li class="text-center"><a href="#">Notificações</a></li>
+                <li class="text-center"><a href="#">Usuários bloqueados</a></li>
+                <li class="text-center"><a href="#">Privacidade</a></li>
+              <li class="footer"><a href="#">Ver tudo</a></li>
+            </ul>
         </ul>
       </div>
     </nav>
@@ -209,7 +219,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Chat
+        Início
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio.html"><i class="fa fa-th"></i> Início</a></li>
@@ -224,12 +234,12 @@
 
       <div class="col-md-6">
               <!-- USERS LIST -->
-              <div class="box box-danger">
+              <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Latest Members</h3>
+                  <h3 class="box-title">Últimos membros online</h3>
 
                   <div class="box-tools pull-right">
-                    <span class="label label-danger">8 New Members</span>
+                    <span class="label label-success">8 novos membros</span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>

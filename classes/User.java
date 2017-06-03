@@ -11,6 +11,7 @@ public class User{
 	private String email;
 	// private photo
 	private int numFriends;
+	private boolean notificationDisable = false;
 
 	
 	public void getFirstMonthEntered(){
