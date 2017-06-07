@@ -41,7 +41,7 @@
     <!-- Logo -->
     <a href="inicio.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>M</b></span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Messenger</b></span>
     </a>
@@ -172,19 +172,7 @@
         </div>
         <div class="pull-left info">
           <p>Danilo Viana</p>
-            <div class="btn-group">
-			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Action <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu">
-			    <li><a href="#">Action</a></li>
-			    <li><a href="#">Another action</a></li>
-			    <li><a href="#">Something else here</a></li>
-			    <li role="separator" class="divider"></li>
-			    <li><a href="#">Separated link</a></li>
-			  </ul>
-			</div>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            <button id ='status' onclick="changeStatus()" style="border: none; background-color: transparent;"><i class="fa fa-circle text-success"></i> Online</button>
         </div>
       </div>
 
@@ -536,3 +524,17 @@
 <script src="../dist/js/demo.js"></script>
 </body>
 </html>
+
+
+<script>
+function changeStatus()
+{
+   var change = document.getElementById("status");
+    if (change.innerHTML == " Online")
+    {
+        change.innerHTML = " Ausente";
+    }
+    else {
+        change.innerHTML = " Online";
+    }
+}
