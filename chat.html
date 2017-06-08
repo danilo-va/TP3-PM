@@ -175,6 +175,19 @@
             <button id ='status' onclick="changeStatus()" style="border: none; background-color: transparent;"><i class="fa fa-circle text-success"></i> Online</button>
         </div>
       </div>
+      <div class="btn-group">
+                  <button class="fa fa-circle text-success dropdown-toggle" data-toggle="dropdown" style="border: none; background-color: transparent;"> Online</button>
+                  	<span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
 
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
@@ -525,16 +538,3 @@
 </body>
 </html>
 
-
-<script>
-function changeStatus()
-{
-   var change = document.getElementById("status");
-    if (change.innerHTML == " Online")
-    {
-        change.innerHTML = " Ausente";
-    }
-    else {
-        change.innerHTML = " Online";
-    }
-}
