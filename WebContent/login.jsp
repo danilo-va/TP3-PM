@@ -37,11 +37,11 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Inicie sua sess√£o</p>
+    <p class="login-box-msg">Inicie sua sess„o</p>
 
     <form action="../../index2.html" method="post">
       <div class="form-group has-feedback">
-        <input type="Usu√°rio" class="form-control" placeholder="Usu√°rio">
+        <input type="Usu·rio" class="form-control" placeholder="Usu·rio">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

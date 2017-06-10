@@ -37,23 +37,27 @@
   </div>
 
   <div class="register-box-body">
-    <p class="login-box-msg">Registre-se</p>
+    <p class="login-box-msg">Por favor, preencha os campos abaixo:</p>
 
-    <form action="../../index.html" method="post">
+    <form action="addUser" method="post" onsubmit="return validaCampo(this)">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Nome completo">
+        <input type="text" class="form-control" placeholder="Nome completo" name="name" id="name">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="UsuÃ¡rio" class="form-control" placeholder="UsuÃ¡rio">
+        <input type="Usuário" class="form-control" placeholder="Usuário" name="userName" id="userName">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Senha">
+        <input type="E-mail" class="form-control" placeholder="E-mail" name="email" id="email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Senha" name="password" id="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Confirme sua senha">
+        <input type="password" class="form-control" placeholder="Confirme sua senha" name="passwordConfirmation" id="passwordConfirmation">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="row">
@@ -69,7 +73,7 @@
 
     
 
-    <a href="login.html" class="text-center">JÃ¡ tenho uma conta</a>
+    <a href="login.jsp" class="text-center">Já tenho uma conta</a>
   </div>
   <!-- /.form-box -->
 </div>
@@ -90,5 +94,28 @@
     });
   });
 </script>
+
+<script language="javascript">
+	function validaCampo(){		
+		var valid = true;
+		if(document.getElementById('name').value == "" || 
+	   	document.getElementById('userName').value == "" ||
+	   	document.getElementById('email').value == "" ||
+	   	document.getElementById('password').value == "" ||
+	   	document.getElementById('passwordConfirmation').value == ""){
+	   		valid = false;
+			alert("Todos os campos são obrigatórios!");
+		}
+		
+		if(document.getElementById('password').value !=
+				document.getElementById('passwordConfirmation').value){
+			valid = false;
+			alert("Senhas não coincidem! Por favor, tente novamente.");
+		}
+		return valid;
+	}
+</script>
+
+
 </body>
 </html>
