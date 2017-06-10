@@ -172,22 +172,22 @@
         </div>
         <div class="pull-left info">
           <p>Danilo Viana</p>
-            <button id ='status' onclick="changeStatus()" style="border: none; background-color: transparent;"><i class="fa fa-circle text-success"></i> Online</button>
+          <i>danilo-va</i>
         </div>
       </div>
-      <div class="btn-group">
-                  <button class="fa fa-circle text-success dropdown-toggle" data-toggle="dropdown" style="border: none; background-color: transparent;"> Online</button>
-                  	<span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul style="background-color: #000000;" class="dropdown-menu" role="menu">
-                    <li><a class="fa fa-circle text-danger" href="#"> Ocupado</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Encerrar sessão</a></li>
-                  </ul>
-                </div>
+
+                <ul >
+                <li class="dropdown active span8">
+                    <a class="dropdown-toggle" id="inp_impact" data-toggle="dropdown">
+                        <i class="fa fa-circle text-success dropdown-toggle"></i>&nbsp;<span id="dropdown_title"> Online</span><span class="caret"></span></a>
+                    <ul ID="divNewNotifications" class="dropdown-menu">
+                            <li><a class="fa fa-circle text-success" href="#"> Online</a>
+                            <li><a class="fa fa-circle text-danger" href="#"> Ocupado</a></li>       
+                            <li><a class="fa fa-circle text-warning" href="#"> Ausente</a></li>      
+                            <li><a class="fa fa-circle" href="#"> Invisível</a></li>  
+                    </ul>
+                </li>
+            </ul>
 
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
@@ -538,3 +538,12 @@
 </body>
 </html>
 
+<script>
+  $('.dropdown-toggle').dropdown();
+
+
+  $('#divNewNotifications li').on('click', function() {
+      $('#dropdown_title').html($(this).find('a').html());
+      });
+
+</script>
