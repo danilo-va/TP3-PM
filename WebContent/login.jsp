@@ -67,7 +67,7 @@
     </form>
 
     <a href="#">Esqueci minha senha</a><br>
-    <a href="register.html" class="text-center">Crie uma conta</a>
+    <a href="register.jsp" class="text-center">Crie uma conta</a>
 
   </div>
   <!-- /.login-box-body -->

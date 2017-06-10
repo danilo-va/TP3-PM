@@ -48,6 +48,9 @@ public class addUserServlet extends HttpServlet{
         UserDao dao = new UserDao();
         dao.addUser(user);
         
-        //System.out.println(name + " " + userName + " " + email + " " + passwordHash);
+        out.println("<script type=\"text/javascript\">");
+        out.println("alert('Cadastro realizado com sucesso! Bem vindo ao DRAMA.');");
+        out.println("location='login.jsp';");
+        out.println("</script>");    
 	}
 }
