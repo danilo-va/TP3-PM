@@ -39,7 +39,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="inicio.html" class="logo">
+    <a href="inicio.jsp" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>M</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -69,7 +69,7 @@
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li><!-- start message -->
-                    <a href="chat.html">
+                    <a href="chat.jsp">
                       <div class="pull-left">
                         <img src="img/manoel.jpg" class="img-circle" alt="User Image">
                       </div>
@@ -136,10 +136,10 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="editProfile.html" class="btn btn-default btn-flat">Editar perfil</a>
+                  <a href="editProfile.jsp" class="btn btn-default btn-flat">Editar perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="login.html" class="btn btn-default btn-flat">Encerrar sessão</a>
+                  <a href="login.jsp" class="btn btn-default btn-flat">Encerrar sessão</a>
                 </div>
               </li>
             </ul>
@@ -193,12 +193,12 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
         <li>
-          <a href="inicio.html">
+          <a href="inicio.jsp">
             <i class="fa fa-th"></i> <span>Início</span>
           </a>
         </li>
         <li class="active">
-          <a href="chat.html">
+          <a href="chat.jsp">
             <i class="fa fa-edit"></i> <span>Chat</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">5</small>
@@ -235,7 +235,7 @@
         Chat
       </h1>
       <ol class="breadcrumb">
-        <li><a href="inicio.html"><i class="fa fa-th"></i> Início</a></li>
+        <li><a href="inicio.jsp"><i class="fa fa-th"></i> Início</a></li>
         <li class="active">Chat</li>
       </ol>
     </section>

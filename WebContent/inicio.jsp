@@ -180,12 +180,12 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
         <li class="active">
-          <a href="inicio.html">
-            <i class="fa fa-th"></i> <span>In√≠cio</span>
+          <a href="inicio.jsp">
+            <i class="fa fa-th"></i> <span>InÌ≠cio</span>
           </a>
         </li>
         <li>
-          <a href="chat.html">
+          <a href="chat.jsp">
             <i class="fa fa-edit"></i> <span>Chat</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">5</small>
@@ -219,10 +219,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        In√≠cio
+        InÌ≠cio
       </h1>
       <ol class="breadcrumb">
-        <li><a href="inicio.html"><i class="fa fa-th"></i> In√≠cio</a></li>
+        <li><a href="inicio.jsp"><i class="fa fa-th"></i> In√≠cio</a></li>
       </ol>
     </section>
 
@@ -236,7 +236,7 @@
               <!-- USERS LIST -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">√öltimos membros online</h3>
+                  <h3 class="box-title">TEAM TAYLOR</h3>
 
                   <div class="box-tools pull-right">
                     <span class="label label-success">8 novos membros</span>
