@@ -6,6 +6,7 @@ public class User {
 	private String userName;
 	private String email;
 	private String passwordHash;
+	private String photoFile = "default.jpg";
 	
 	public int getId() {
 		return id;
@@ -36,6 +37,12 @@ public class User {
 	}
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
+	}
+	public String getPhotoFile() {
+		return photoFile;
+	}
+	public void setPhotoFile(String photoFile) {
+		this.photoFile = photoFile;
 	}
 	
 }

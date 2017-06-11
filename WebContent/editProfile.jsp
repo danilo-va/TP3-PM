@@ -1,4 +1,5 @@
-
+<%@ page import="dao.UserDao,
+			models.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,13 +38,19 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <%
 	String userId = null;
+	User loggedUser = null;
 	Cookie[] cookies = request.getCookies();
 	if(cookies !=null){
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("id")) userId = cookie.getValue();
 		}
 	}
-	if(userId == null) response.sendRedirect("login.jsp");
+	if(userId == null){
+		response.sendRedirect("login.jsp");
+	}else{ // Load user
+		UserDao dao = new UserDao();
+		loggedUser = dao.getUser(Integer.parseInt(userId));
+	}
 %>
 <div class="wrapper">
 
@@ -131,16 +138,15 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="img/danilo.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Danilo Viana</span>
+				<%out.println("<img src=\"img/" + loggedUser.getPhotoFile() + "\" class=\"user-image\" alt=\"User Image\">");%>
+            	<span class="hidden-xs"><% out.println(loggedUser.getName()); %></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="img/danilo.jpg" class="img-circle" alt="User Image">
-
+                <%out.println("<img src=\"img/" + loggedUser.getPhotoFile() + "\" class=\"img-circle\" alt=\"User Image\">");%>
                 <p>
-                  Danilo Viana
+                  <% out.println(loggedUser.getName()); %>
                   <small>Membro desde Mai. 2017</small>
                 </p>
               </li>
@@ -180,11 +186,12 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="img/danilo.jpg" class="img-circle" alt="User Image">
+          <%out.println("<img src= img/" + loggedUser.getPhotoFile() + " class=\"img-circle\" alt=\"User Image\">");%>
         </div>
         <div class="pull-left info">
-          <p>Danilo Viana</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p><% out.println(loggedUser.getName()); %></p>
+          <i><% out.println(loggedUser.getUserName());%></i>
+          <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
         </div>
       </div>
 
@@ -246,7 +253,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Danilo Viana</h3>
+          <h3 class="box-title"><% out.println(loggedUser.getName()); %></h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -257,7 +264,29 @@
           </div>
         </div>
         <div class="box-body">
-          Start creating your amazing application!
+        	<h4 class="box-title">Informações Pessoais</h4>
+        	<form action="UpdateUserInfoServlet" method = "post" onsubmit="return validatePersonalInfoFields(this)">
+        		<input type="text" class="form-control" placeholder="Nome completo" name="newName" id="newName" value='<% out.print(loggedUser.getName()); %>'>
+        		<input type="Usuário" class="form-control" placeholder="Usuário" name="newUserName" id="newUserName" value='<% out.print(loggedUser.getUserName()); %>'>
+        		<input type="E-mail" class="form-control" placeholder="E-mail" name="newEmail" id="newEmail" value='<% out.print(loggedUser.getEmail()); %>'> 
+        		<br>
+        		<button type="submit" class="btn btn-default btn-flat">Atualizar</button>
+        	</form>
+        	<hr>
+        	<h4 class="box-title">Segurança</h4>
+        	<form action="UpdateUserPasswordServlet" method="post" onsubmit="return validateSecurityFields(this)">
+        		<input type="password" class="form-control" placeholder="Senha atual" name="currentPassword" id="currentPassword">
+        		<input type="password" class="form-control" placeholder="Nova senha" name="newPassword" id="newPassword">
+        		<input type="password" class="form-control" placeholder="Confirme a nova senha" name="newPasswordConfirmation" id="newPasswordConfirmation">
+        		<br>
+        		<button type="submit" class="btn btn-default btn-flat">Alterar senha</button> 
+        	</form>
+        	<hr>
+        	<h4 class="box-title">Foto de perfil</h4>
+        	<form action="upload" method="post" enctype="multipart/form-data">
+			    <input type="file" name="file" />
+			    <input type="submit" />
+			</form>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
@@ -275,201 +304,6 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                <p>New phone +1(800)555-1234</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                <p>nora@example.com</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                <p>Execution time 5 seconds</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Other sets of options are available
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Allow the user to show his name in blog posts
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Show me as online
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Turn off notifications
-              <input type="checkbox" class="pull-right">
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Delete chat history
-              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
@@ -487,4 +321,35 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 </body>
+
+<script language="javascript">
+	function validateSecurityFields(){		
+		var valid = true;
+		if(document.getElementById('currentPassword').value == "" || 
+	   	document.getElementById('newPassword').value == "" ||
+	   	document.getElementById('newPasswordConfirmation').value == ""){
+	   		valid = false;
+			alert("Todos os campos são obrigatórios!");
+		}
+		
+		if(document.getElementById('newPassword').value !=
+				document.getElementById('newPasswordConfirmation').value){
+			valid = false;
+			alert("Senhas não coincidem! Por favor, tente novamente.");
+		}
+		return valid;
+	}
+	
+	function validatePersonalInfoFields(){		
+		var valid = true;
+		if(document.getElementById('newName').value == "" || 
+	   	document.getElementById('newUserName').value == "" ||
+	   	document.getElementById('newEmail').value == ""){
+	   		valid = false;
+			alert("Todos os campos são obrigatórios!");
+		}
+		return valid;
+	}
+</script>
+
 </html>

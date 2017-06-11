@@ -1,3 +1,5 @@
+<%@ page import="dao.UserDao,
+			models.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,13 +38,19 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <%
 	String userId = null;
+	User loggedUser = null;
 	Cookie[] cookies = request.getCookies();
 	if(cookies !=null){
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("id")) userId = cookie.getValue();
 		}
 	}
-	if(userId == null) response.sendRedirect("login.jsp");
+	if(userId == null){
+		response.sendRedirect("login.jsp");
+	}else{ // Load user
+		UserDao dao = new UserDao();
+		loggedUser = dao.getUser(Integer.parseInt(userId));
+	}
 %>
 <div class="wrapper">
 
@@ -83,7 +91,7 @@
                         <img src="img/manoel.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        Manoel Júnior
+                        <% out.println(loggedUser.getName()); %>
                         <small><i class="fa fa-clock-o"></i> 5 mins</small>
                       </h4>
                       <p>Você é muito legal!</p>
@@ -130,16 +138,16 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="img/danilo.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Danilo Viana</span>
+              
+              <%out.println("<img src=\"img/" + loggedUser.getPhotoFile() + "\" class=\"user-image\" alt=\"User Image\">");%>
+              <span class="hidden-xs"><% out.println(loggedUser.getName());%></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="img/danilo.jpg" class="img-circle" alt="User Image">
-
+                <%out.println("<img src=\"img/" + loggedUser.getPhotoFile() + "\" class=\"img-circle\" alt=\"User Image\">");%>
                 <p>
-                  Danilo Viana
+                  <% out.println(loggedUser.getName());%>
                   <small>Membro desde Mai. 2017</small>
                 </p>
               </li>
@@ -179,11 +187,11 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="img/danilo.jpg" class="img-circle" alt="User Image">
+          <%out.println("<img src= img/" + loggedUser.getPhotoFile() + " class=\"img-circle\" alt=\"User Image\">");%>
         </div>
         <div class="pull-left info">
-          <p>Danilo Viana</p>
-          <i>danilo-va</i>
+          <p><% out.println(loggedUser.getName());%></p>
+          <i><% out.println(loggedUser.getUserName());%></i>
         </div>
       </div>
 
