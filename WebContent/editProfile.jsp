@@ -35,6 +35,16 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+<%
+	String userId = null;
+	Cookie[] cookies = request.getCookies();
+	if(cookies !=null){
+		for(Cookie cookie : cookies){
+			if(cookie.getName().equals("id")) userId = cookie.getValue();
+		}
+	}
+	if(userId == null) response.sendRedirect("login.jsp");
+%>
 <div class="wrapper">
 
   <header class="main-header">

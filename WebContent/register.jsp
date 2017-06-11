@@ -31,6 +31,16 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition register-page">
+<%
+	String userId = null;
+	Cookie[] cookies = request.getCookies();
+	if(cookies !=null){
+		for(Cookie cookie : cookies){
+			if(cookie.getName().equals("id")) userId = cookie.getValue();
+		}
+	}
+	if(userId != null) response.sendRedirect("chat.jsp");
+%>
 <div class="register-box">
   <div class="register-logo">
     <a href="../../index2.jsp"><b>Messenger</b></a>

@@ -1,4 +1,3 @@
-ï»¿
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +34,16 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+<%
+	String userId = null;
+	Cookie[] cookies = request.getCookies();
+	if(cookies !=null){
+		for(Cookie cookie : cookies){
+			if(cookie.getName().equals("id")) userId = cookie.getValue();
+		}
+	}
+	if(userId == null) response.sendRedirect("login.jsp");
+%>
 <div class="wrapper">
 
   <header class="main-header">
@@ -74,10 +83,10 @@
                         <img src="img/manoel.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        Manoel JÃºnior
+                        Manoel Júnior
                         <small><i class="fa fa-clock-o"></i> 5 mins</small>
                       </h4>
-                      <p>VocÃª Ã© muito legal!</p>
+                      <p>Você é muito legal!</p>
                     </a>
                   </li>
                 </ul>
@@ -93,7 +102,7 @@
               <span class="label label-warning">1</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header text-center"><b>SolicitaÃ§Ãµes de amizade</b></li>
+              <li class="header text-center"><b>Solicitações de amizade</b></li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
@@ -136,10 +145,12 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="editProfile.jsp" class="btn btn-default btn-flat">Editar perfil</a>
+                  <a href="editProfile.jsp" class="btn btn-default btn-flat">Editar perfil</a>                  
                 </div>
                 <div class="pull-right">
-                  <a href="login.jsp" class="btn btn-default btn-flat">Encerrar sessÃ£o</a>
+                	<form action="LogoutServlet" method="post">
+                		<button type="submit" class="btn btn-default btn-flat">Encerrar Sessão</button>
+                	</form>
                 </div>
               </li>
             </ul>
@@ -151,9 +162,9 @@
               <i class="fa fa-gears"></i>
             </a>
             <ul class="dropdown-menu">
-              <li class="header text-center"><b>ConfiguraÃ§Ãµes</b></li>
-                <li class="text-center"><a href="#">NotificaÃ§Ãµes</a></li>
-                <li class="text-center"><a href="#">UsuÃ¡rios bloqueados</a></li>
+              <li class="header text-center"><b>Configurações</b></li>
+                <li class="text-center"><a href="#">Notificações</a></li>
+                <li class="text-center"><a href="#">Usuários bloqueados</a></li>
                 <li class="text-center"><a href="#">Privacidade</a></li>
               <li class="footer"><a href="#">Ver tudo</a></li>
             </ul>
@@ -184,7 +195,7 @@
                             <li><a class="fa fa-circle text-success" href="#"> Online</a>
                             <li><a class="fa fa-circle text-danger" href="#"> Ocupado</a></li>       
                             <li><a class="fa fa-circle text-warning" href="#"> Ausente</a></li>      
-                            <li><a class="fa fa-circle" href="#"> InvisÃ­vel</a></li>  
+                            <li><a class="fa fa-circle" href="#"> Invisível</a></li>  
                     </ul>
                 </li>
             </ul>
@@ -194,7 +205,7 @@
         <li class="header">MENU</li>
         <li>
           <a href="inicio.jsp">
-            <i class="fa fa-th"></i> <span>InÃ­cio</span>
+            <i class="fa fa-th"></i> <span>Início</span>
           </a>
         </li>
         <li class="active">
@@ -235,7 +246,7 @@
         Chat
       </h1>
       <ol class="breadcrumb">
-        <li><a href="inicio.jsp"><i class="fa fa-th"></i> InÃ­cio</a></li>
+        <li><a href="inicio.jsp"><i class="fa fa-th"></i> Início</a></li>
         <li class="active">Chat</li>
       </ol>
     </section>
@@ -269,13 +280,13 @@
                 <!-- Message. Default to the left -->
                 <div class="direct-chat-msg">
                   <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-left">Manoel JÃºnior</span>
+                    <span class="direct-chat-name pull-left">Manoel Júnior</span>
                     <span class="direct-chat-timestamp pull-right">27 Mai 14:30</span>
                   </div>
                   <!-- /.direct-chat-info -->
                   <img class="direct-chat-img" src="img/manoel.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
                   <div class="direct-chat-text">
-                    VocÃª Ã© muito legal!
+                    Você é muito legal!
                   </div>
                   <!-- /.direct-chat-text -->
                 </div>
