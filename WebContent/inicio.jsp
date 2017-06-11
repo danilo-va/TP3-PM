@@ -74,10 +74,10 @@
                         <img src="img/manoel.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        Manoel JÃºnior
+                        Manoel Júnior
                         <small><i class="fa fa-clock-o"></i> 5 mins</small>
                       </h4>
-                      <p>VocÃª Ã© muito legal!</p>
+                      <p>Você é muito legal!</p>
                     </a>
                   </li>
                 </ul>
@@ -93,7 +93,7 @@
               <span class="label label-warning">1</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header text-center"><b>SolicitaÃ§Ãµes de amizade</b></li>
+              <li class="header text-center"><b>Solicitações de amizade</b></li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
@@ -139,7 +139,7 @@
                   <a href="editProfile.jsp" class="btn btn-default btn-flat">Editar perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="login.jsp" class="btn btn-default btn-flat">Encerrar sessÃ£o</a>
+                  <a href="login.jsp" class="btn btn-default btn-flat">Encerrar sessão</a>
                 </div>
               </li>
             </ul>
@@ -151,9 +151,9 @@
               <i class="fa fa-gears"></i>
             </a>
             <ul class="dropdown-menu">
-              <li class="header text-center"><b>ConfiguraÃ§Ãµes</b></li>
-                <li class="text-center"><a href="#">NotificaÃ§Ãµes</a></li>
-                <li class="text-center"><a href="#">UsuÃ¡rios bloqueados</a></li>
+              <li class="header text-center"><b>Configurações</b></li>
+                <li class="text-center"><a href="#">Notificações</a></li>
+                <li class="text-center"><a href="#">Usuários bloqueados</a></li>
                 <li class="text-center"><a href="#">Privacidade</a></li>
               <li class="footer"><a href="#">Ver tudo</a></li>
             </ul>
@@ -222,7 +222,7 @@
         Iní­cio
       </h1>
       <ol class="breadcrumb">
-        <li><a href="inicio.jsp"><i class="fa fa-th"></i> InÃ­cio</a></li>
+        <li><a href="inicio.jsp"><i class="fa fa-th"></i> Iní­cio</a></li>
       </ol>
     </section>
 
