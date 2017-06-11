@@ -75,7 +75,7 @@
       </div>
     </form>
 
-    <a href="#">Esqueci minha senha</a><br>
+    <!-- <a href="#">Esqueci minha senha</a><br> -->
     <a href="register.jsp" class="text-center">Crie uma conta</a>
 
   </div>

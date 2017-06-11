@@ -1,5 +1,6 @@
 <%@ page import="dao.UserDao,
-			models.User" %>
+			models.User,
+			java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,7 +148,11 @@
                 <%out.println("<img src=\"img/" + loggedUser.getPhotoFile() + "\" class=\"img-circle\" alt=\"User Image\">");%>
                 <p>
                   <% out.println(loggedUser.getName()); %>
-                  <small>Membro desde Mai. 2017</small>
+                  <small>Membro desde 
+                  	<% 
+                  		out.print(new SimpleDateFormat("MMM").format(loggedUser.getRegistrationDate()) + 
+                  				" " + new SimpleDateFormat("YYYY").format(loggedUser.getRegistrationDate())); %>
+                  </small>
                 </p>
               </li>
               <li class="user-footer">

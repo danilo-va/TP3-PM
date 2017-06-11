@@ -1,11 +1,14 @@
 package models;
 
+import java.util.Date;
+
 public class User {
 	private int id;
 	private String name;
 	private String userName;
 	private String email;
 	private String passwordHash;
+	private Date registrationDate;
 	private String photoFile = "default.jpg";
 	
 	public int getId() {
@@ -37,6 +40,12 @@ public class User {
 	}
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
+	}
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 	public String getPhotoFile() {
 		return photoFile;

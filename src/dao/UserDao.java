@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import jdbc.ConnectionFactory;
 import models.User;
@@ -19,17 +22,20 @@ public class UserDao {
 	
 	public void addUser(User user){
 		String sql = "INSERT INTO user "
-				+ "(name, user_name, email, password_hash, photo_file) "+
-				"VALUES(?, ?, ?, ?, ?)";
+				+ "(name, user_name, email, password_hash, registration_date, photo_file) "+
+				"VALUES(?, ?, ?, ?, ?, ?)";
 		try {
 			// Prepared statement to insertion
 			PreparedStatement stmt = connection.prepareStatement(sql);
+			Date date = new Date();
+			String formatedDate= new SimpleDateFormat("yyyy-MM-dd").format(date);
 			
 			stmt.setString(1, user.getName());
 			stmt.setString(2, user.getUserName());
 			stmt.setString(3, user.getEmail());
 			stmt.setString(4, user.getPasswordHash());
-			stmt.setString(5, user.getPhotoFile());
+			stmt.setString(5, formatedDate);
+			stmt.setString(6, user.getPhotoFile());
 			
 			// Execute insertion operation
 			stmt.execute();
@@ -84,6 +90,7 @@ public class UserDao {
 					u.setUserName(rs.getString("user_name"));
 					u.setEmail(rs.getString("email"));
 					u.setPasswordHash(rs.getString("password_hash"));
+					u.setRegistrationDate(rs.getDate("registration_date"));
 					u.setPhotoFile(rs.getString("photo_file"));
 				}
 				return u;
