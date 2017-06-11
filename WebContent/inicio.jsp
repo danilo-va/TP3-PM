@@ -149,7 +149,9 @@
                   <a href="editProfile.jsp" class="btn btn-default btn-flat">Editar perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="login.jsp" class="btn btn-default btn-flat">Encerrar sessão</a>
+                  	<form action="LogoutServlet" method="post">
+                		<button type="submit" class="btn btn-default btn-flat">Encerrar Sessão</button>
+                	</form>
                 </div>
               </li>
             </ul>
