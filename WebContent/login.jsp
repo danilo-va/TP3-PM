@@ -33,13 +33,13 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Messenger</b></a>
+    <a href="../../index2.jsp"><b>Messenger</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Inicie sua sessão</p>
 
-    <form action="../../index2.html" method="post">
+    <form action="../../index2.jsp" method="post">
       <div class="form-group has-feedback">
         <input type="Usuário" class="form-control" placeholder="Usuário">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
