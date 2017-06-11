@@ -2,10 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,9 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDao;
 import models.User;
+import security.Hashing;
 
 @WebServlet("/addUser")
-public class addUserServlet extends HttpServlet{
+public class AddUserServlet extends HttpServlet{
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// busca o writer
@@ -28,21 +27,13 @@ public class addUserServlet extends HttpServlet{
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
-        // Store the MD5 hash of the password for security reasons
-        MessageDigest m = null;
-		try {
-			m = MessageDigest.getInstance("MD5");
-		} catch (NoSuchAlgorithmException e) {
-			throw new RuntimeException(e);
-		}
-        m.update(password.getBytes(),0,password.length());
-        
         // Build a new 'User' object
         User user = new User();
         user.setName(name);
         user.setUserName(userName);
         user.setEmail(email);
-        user.setPasswordHash(new BigInteger(1,m.digest()).toString(16));
+        // Store the MD5 hash of the password for security reasons
+        user.setPasswordHash(Hashing.getMD5Hash(password));
         
         // Use the 'User' DAO object to save the user
         UserDao dao = new UserDao();

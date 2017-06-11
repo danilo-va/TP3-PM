@@ -39,13 +39,13 @@
   <div class="login-box-body">
     <p class="login-box-msg">Inicie sua sessão</p>
 
-    <form action="../../index2.html" method="post">
+    <form action="LoginServlet" method="post">
       <div class="form-group has-feedback">
-        <input type="Usuário" class="form-control" placeholder="Usuário">
+        <input type="Usuário" class="form-control" placeholder="Usuário" name="user" id="user">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Senha">
+        <input type="password" class="form-control" placeholder="Senha" name="password" id="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
