@@ -298,7 +298,7 @@
                   </div>
                   <!-- /.direct-chat-info -->
                   <img class="direct-chat-img" src="img/manoel.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
-                  <div class="direct-chat-text">
+                  <div class="direct-chat-text col-md-5">
                     Você é muito legal!
                   </div>
                   <!-- /.direct-chat-text -->
@@ -313,8 +313,8 @@
                   </div>
                   <!-- /.direct-chat-info -->
                   <img class="direct-chat-img" src="img/danilo.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
-                  <div class="direct-chat-text">
-                    Obrigado!
+                  <div class="direct-chat-text col-md-5 pull-right">
+                    <i class = "pull-right">Obrigado!</i>
                   </div>
                   <!-- /.direct-chat-text -->
                 </div>
