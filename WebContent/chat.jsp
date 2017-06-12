@@ -277,17 +277,9 @@
           <div class="box box-primary direct-chat direct-chat-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Manoel</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
-                  <i class="fa fa-comments"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" style="height:500px;">
               <!-- Conversations are loaded here -->
               <div class="direct-chat-messages">
                 <!-- Message. Default to the left -->
@@ -569,5 +561,4 @@
   $('#divNewNotifications li').on('click', function() {
       $('#dropdown_title').html($(this).find('a').html());
       });
-
 </script>
