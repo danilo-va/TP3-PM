@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import jdbc.ConnectionFactory;
 import models.User;
 import security.Hashing;
@@ -27,8 +24,7 @@ public class UserDao {
 		try {
 			// Prepared statement to insertion
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			Date date = new Date();
-			String formatedDate= new SimpleDateFormat("yyyy-MM-dd").format(date);
+			String formatedDate= new SimpleDateFormat("yyyy-MM-dd").format(user.getRegistrationDate());
 			
 			stmt.setString(1, user.getName());
 			stmt.setString(2, user.getUserName());
@@ -125,6 +121,22 @@ public class UserDao {
 			
 			stmt.setString(1, user.getPasswordHash());
 			stmt.setInt(2, user.getId());
+			
+			// Execute update operation
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void updateUserStatus(int userID, String status){
+		String sql = "UPDATE user SET status = ? WHERE user.id = ?;";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			
+			stmt.setString(1, status);
+			stmt.setInt(2, userID);
 			
 			// Execute update operation
 			stmt.execute();

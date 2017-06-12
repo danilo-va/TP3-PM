@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDao;
+
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet{
 	@Override
@@ -25,6 +27,8 @@ public class LogoutServlet extends HttpServlet{
     	}
     	}
     	if(loginCookie != null){
+    		UserDao dao = new UserDao();
+    		dao.updateUserStatus(Integer.parseInt(loginCookie.getValue()), "INVISIBLE");
     		loginCookie.setMaxAge(0);
         	response.addCookie(loginCookie);
     	}

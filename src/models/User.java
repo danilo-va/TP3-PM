@@ -10,6 +10,7 @@ public class User {
 	private String passwordHash;
 	private Date registrationDate;
 	private String photoFile = "default.jpg";
+	private String status;
 	
 	public int getId() {
 		return id;
@@ -52,6 +53,12 @@ public class User {
 	}
 	public void setPhotoFile(String photoFile) {
 		this.photoFile = photoFile;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

@@ -41,6 +41,7 @@
 	String userId = null;
 	User loggedUser = null;
 	Cookie[] cookies = request.getCookies();
+	UserDao dao = new UserDao();
 	if(cookies !=null){
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("id")) userId = cookie.getValue();
@@ -49,9 +50,13 @@
 	if(userId == null){
 		response.sendRedirect("login.jsp");
 	}else{ // Load user
-		UserDao dao = new UserDao();
+		dao = new UserDao();
 		loggedUser = dao.getUser(Integer.parseInt(userId));
 	}
+	
+	//Chat related objects
+	int contactId = Integer.parseInt(request.getParameter("contactId"));
+	User contactUser = dao.getUser(contactId);
 %>
 <div class="wrapper">
 
@@ -276,20 +281,20 @@
           <!-- DIRECT CHAT PRIMARY -->
           <div class="box box-primary direct-chat direct-chat-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Manoel</h3>
+              <h3 class="box-title"> <% out.print(contactUser.getName()); %> </h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body" style="height:500px;">
               <!-- Conversations are loaded here -->
-              <div class="direct-chat-messages">
+              <div id="chatZone" class="direct-chat-messages">
                 <!-- Message. Default to the left -->
                 <div class="direct-chat-msg">
                   <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-left">Manoel Júnior</span>
+                    <span class="direct-chat-name pull-left"> <% out.print(contactUser.getName()); %> </span>
                     <span class="direct-chat-timestamp pull-right">27 Mai 14:30</span>
                   </div>
                   <!-- /.direct-chat-info -->
-                  <img class="direct-chat-img" src="img/manoel.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+                  <img class="direct-chat-img" src= <% out.print("'img/" + contactUser.getPhotoFile() + "'"); %> alt="Message User Image"><!-- /.direct-chat-img -->
                   <div class="direct-chat-text col-md-5">
                     Você é muito legal!
                   </div>
@@ -300,11 +305,11 @@
                 <!-- Message to the right -->
                 <div class="direct-chat-msg right">
                   <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-right">Danilo Viana</span>
+                    <span class="direct-chat-name pull-right"><% out.print(loggedUser.getName()); %></span>
                     <span class="direct-chat-timestamp pull-left">27 Mai 14:31</span>
                   </div>
                   <!-- /.direct-chat-info -->
-                  <img class="direct-chat-img" src="img/danilo.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+                  <img class="direct-chat-img" src= <% out.print("'img/" + loggedUser.getPhotoFile() + "'"); %> alt="Message User Image"><!-- /.direct-chat-img -->
                   <div class="direct-chat-text col-md-5 pull-right">
                     <i class = "pull-right">Obrigado!</i>
                   </div>
@@ -319,11 +324,12 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-              <form action="#" method="post">
+              <form onsubmit="return chat.sendMsg()">
                 <div class="input-group">
-                  <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                  <input type="text" name="message" id="message" placeholder="Type Message ..." class="form-control">
                       <span class="input-group-btn">
-                        <button type="submit" class="btn btn-primary btn-flat">Send</button>
+                        <!-- <button type="submit" class="btn btn-primary btn-flat">Send</button> -->
+                      	<input type="button" class="btn btn-primary btn-flat" value="Submit" onclick="chat.sendMsg(); return false;"/>
                       </span>
                 </div>
               </form>
@@ -341,201 +347,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                <p>New phone +1(800)555-1234</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                <p>nora@example.com</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                <p>Execution time 5 seconds</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Other sets of options are available
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Allow the user to show his name in blog posts
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Show me as online
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Turn off notifications
-              <input type="checkbox" class="pull-right">
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Delete chat history
-              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -552,8 +363,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 </body>
+<script type="text/javascript" src="chat.js"></script>
 </html>
-
 <script>
   $('.dropdown-toggle').dropdown();
 

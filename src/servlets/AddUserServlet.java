@@ -2,6 +2,8 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +34,7 @@ public class AddUserServlet extends HttpServlet{
         user.setName(name);
         user.setUserName(userName);
         user.setEmail(email);
+        user.setRegistrationDate(new Date());
         // Store the MD5 hash of the password for security reasons
         user.setPasswordHash(Hashing.getMD5Hash(password));
         

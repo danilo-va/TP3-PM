@@ -24,7 +24,7 @@ public class UpdateUserInfoServlet extends HttpServlet{
         String newName = request.getParameter("newName");
         String newUserName = request.getParameter("newUserName");
         String newEmail = request.getParameter("newEmail");
-        int userId = 0;
+        int userID = 0;
         
         Cookie loginCookie = null;
     	Cookie[] cookies = request.getCookies();
@@ -37,17 +37,16 @@ public class UpdateUserInfoServlet extends HttpServlet{
 	    	}
     	}
     	if(loginCookie != null)
-    		userId = Integer.parseInt(loginCookie.getValue());
+    		userID = Integer.parseInt(loginCookie.getValue());
     	
     	// Build new user with updated info
-    	User updatedUser = new User();
-    	updatedUser.setId(userId);
-    	updatedUser.setName(newName);
-    	updatedUser.setUserName(newUserName);
-    	updatedUser.setEmail(newEmail);
-    	
     	UserDao dao = new UserDao();
-    	dao.updateUserInfo(updatedUser);
+    	User user = dao.getUser(userID);
+    	user.setName(newName);
+    	user.setUserName(newUserName);
+    	user.setEmail(newEmail);
+    	
+    	dao.updateUserInfo(user);
     	
     	out.println("<script type=\"text/javascript\">");
         out.println("alert('Informações atualizadas');");

@@ -26,8 +26,9 @@ public class LoginServlet extends HttpServlet{
 		
 		UserDao dao = new UserDao();
         userAuthenticated = dao.authUser(userNameProvided, passwordProvided);
-		
+        		
 		if(userAuthenticated != null){
+			dao.updateUserStatus(userAuthenticated.getId(), "ONLINE");
 			Cookie loginCookie = new Cookie("id", String.valueOf(userAuthenticated.getId()));
 			//setting cookie to expire in 60 mins
 			loginCookie.setMaxAge(60*60);

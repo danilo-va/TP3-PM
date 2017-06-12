@@ -39,7 +39,7 @@
 			if(cookie.getName().equals("id")) userId = cookie.getValue();
 		}
 	}
-	if(userId != null) response.sendRedirect("chat.jsp");
+	if(userId != null) response.sendRedirect("inicio.jsp");
 %>
 <div class="login-box">
   <div class="login-logo">
