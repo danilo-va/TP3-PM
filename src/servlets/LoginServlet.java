@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet{
 			//setting cookie to expire in 60 mins
 			loginCookie.setMaxAge(60*60);
 			response.addCookie(loginCookie);
-			response.sendRedirect("chat.jsp");
+			response.sendRedirect("inicio.jsp");
 		}else{
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");

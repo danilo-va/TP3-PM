@@ -1,6 +1,8 @@
 var ChatEngine=function(){
-     var userName=" ";
-     var contactName=" ";
+     var loggedUserName=" ";
+     var loggedUserProfilePic=" ";
+     var contactName=" ";     
+     var contactProfilePic=" ";
      var i = null;
      //var msg="";
      var chatZone=document.getElementById("chatZone");
@@ -9,25 +11,41 @@ var ChatEngine=function(){
      var xhr=" ";
      //initialzation
      this.init=function(){
-        var obj = {};
-		$.getJSON('http://localhost:8080/messenger/getUserInfo?userID=40', function(data) {
-    		$.each(data, function(i,val) {
-	        	console.log(i);
-	        	console.log(val);
-	        	obj[i] = val;
-	        });
-		});
-		console.log(obj);
-		/*if(EventSource){
-        	this.setName();
-         	this.initSevr(); 
-        }else{
-         	alert("Chat engine started");
-        }*/
-        // Load previous messages
-        //alert("Chat engine started.");
+     	var contactId = getUrlParameter('contactId');
+     	var userId = getUrlParameter('userId');
+     	console.log(contactId);
+     	console.log(userId);
+        // Set parameters for user
+        $.getJSON("http://localhost:8080/messenger/getUserInfo?userID=" + userId, callbackLoggedUser);
+        // Set parameters for contact
+        $.getJSON("http://localhost:8080/messenger/getUserInfo?userID=" + contactId, callbackContact);
      };
      
+	 function callbackLoggedUser(data){
+		loggedUserName = data['name'];
+		loggedUserProfilePic = data['photoFile'];
+	 }
+
+	 function callbackContact(data){
+		contactName = data['name'];
+		contactProfilePic = data['photoFile'];
+	 }
+
+	 var getUrlParameter = function getUrlParameter(sParam) {
+	    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+	        sURLVariables = sPageURL.split('&'),
+	        sParameterName,
+	        i;
+
+	    for (i = 0; i < sURLVariables.length; i++) {
+	        sParameterName = sURLVariables[i].split('=');
+
+	        if (sParameterName[0] === sParam) {
+	            return sParameterName[1] === undefined ? true : sParameterName[1];
+	        }
+	    }
+	 };
+
      //For sending message
      this.sendMsg=function(){ 
           msg=document.getElementById("message").value;
@@ -36,11 +54,11 @@ var ChatEngine=function(){
           chatZone.innerHTML += 
           	'<div class="direct-chat-msg right">' +
 			  '<div class="direct-chat-info clearfix">' +
-			    '<span class="direct-chat-name pull-right">Manoel</span>'  +
-			    '<span class="direct-chat-timestamp pull-left">27 Mai 14:31</span>' +
+			    '<span class="direct-chat-name pull-right">' + loggedUserName + '</span>'  +
+			    //'<span class="direct-chat-timestamp pull-left">27 Mai 14:31</span>' +
 			  '</div>' +
 			  '<!-- /.direct-chat-info -->' +
-			  '<img class="direct-chat-img" src= "img/manoel.jpg" alt="Message User Image"><!-- /.direct-chat-img -->' +
+			  '<img class="direct-chat-img" src= "img/' + loggedUserProfilePic + '" alt="Message User Image"><!-- /.direct-chat-img -->' +
 			  '<div class="direct-chat-text col-md-5 pull-right">' +
 			    '<i class = "pull-right">' + msg + '</i>' +
 			  '</div>' +
