@@ -270,23 +270,23 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content" style="height:80vh">
 
 
       <!-- =========================================================== -->
 
       <!-- Direct Chat -->
-      <div class="row">
-        <div class="col-md-12">
+      <div class="row" style="height:80vh">
+        <div class="col-md-12" style="height:80vh">
           <!-- DIRECT CHAT PRIMARY -->
-          <div class="box box-primary direct-chat direct-chat-primary">
+          <div class="box box-primary direct-chat direct-chat-primary" style="height:80vh">
             <div class="box-header with-border">
               <h3 class="box-title"> <% out.print(contactUser.getName()); %> </h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body" style="height:500px;">
+            <div class="box-body" style="height:70vh">
               <!-- Conversations are loaded here -->
-              <div id="chatZone" class="direct-chat-messages">
+              <div id="chatZone" class="direct-chat-messages" style="height:70vh">
                 <!-- Message. Default to the left -->
                 <div class="direct-chat-msg">
                   <div class="direct-chat-info clearfix">
