@@ -216,6 +216,21 @@
             </span>
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
+          	<%
+          		for(User users : user){
+          			out.print("<li><a href=\"#\">");
+          			if(user.getStatus().equals("online"))
+          				out.print("<i class=\"fa fa-circle text-green\"></i>");
+          			if(user.getStatus().equals("busy"))
+          				out.print("<i class=\"fa fa-circle text-red\"></i>");
+          			if(user.getStatus().equals("away"))
+          				out.print("<i class=\"fa fa-circle text-yellow\"></i>");
+          			if(user.getStatus().equals("invisible"))
+          				out.print("<i class=\"fa fa-circle\"></i>");
+
+          			out.print("<span>" + user.getName() + "</span></a></li>");
+          		}
+          	%>
 	        <li><a href="#"><i class="fa fa-circle text-green"></i> <span>Danilo</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle text-red"></i> <span>Manoel</span></a></li>
             <span class="pull-right-container">
