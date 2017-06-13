@@ -52,6 +52,7 @@ private Connection connection;
 				messages.add(rs.getString("content"));
 				messagesDelivered.add(rs.getInt("id"));
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

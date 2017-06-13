@@ -63,7 +63,7 @@ var ChatEngine=function(){
 			  '<!-- /.direct-chat-info -->' +
 			  '<img class="direct-chat-img" src= "img/' + loggedUserProfilePic + '" alt="Message User Image"><!-- /.direct-chat-img -->' +
 			  '<div class="direct-chat-text col-md-5 pull-right">' +
-			    '<i class = "pull-right">' + msg + '</i>' +
+			    msg +
 			  '</div>' +
 			  '<!-- /.direct-chat-text -->' +
 			'</div>';
@@ -105,7 +105,7 @@ var ChatEngine=function(){
     
 	window.setInterval(function(){
 		receiveMessages();
-	}, 2000);
+	}, 1000);
 
 	function receiveMessages(){
 		$.getJSON("http://localhost:8080/messenger/message_pool?userId=" + userId + "&contactId=" + contactId, callbackReceiveMessages);
