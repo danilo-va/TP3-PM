@@ -128,6 +128,9 @@ var ChatEngine=function(){
 					  '<!-- /.direct-chat-text -->' +
 					'</div>';
 		});
+		
+		var objDiv = document.getElementById("chatZone");
+		objDiv.scrollTop = objDiv.scrollHeight;
 	}
 
     this.getJSONP=function(url, success) {
