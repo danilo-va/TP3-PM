@@ -167,19 +167,6 @@
               </li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-gears"></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header text-center"><b>Configurações</b></li>
-                <li class="text-center"><a href="#">Notificações</a></li>
-                <li class="text-center"><a href="#">Usuários bloqueados</a></li>
-                <li class="text-center"><a href="#">Privacidade</a></li>
-              <li class="footer"><a href="#">Ver tudo</a></li>
-            </ul>
         </ul>
       </div>
     </nav>
@@ -238,13 +225,13 @@
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
             <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
-            <li class="active"><a href="removecontact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
+            <li><a href="removeContact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
+	        <li><a href="#"><i class="fa fa-circle text-green"></i> <span>Danilo</span></a></li>
+	        <li><a href="#"><i class="fa fa-circle text-red"></i> <span>Manoel</span></a></li>
+	        <li><a href="#"><i class="fa fa-circle text-yellow"></i> <span>Kuaty</span></a></li>
+	        <li><a href="#"><i class="fa fa-circle "></i> <span>Nhonho</span></a></li>
           </ul>
         </li>
-       <li class="header">LABELS</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
