@@ -5,8 +5,9 @@ import java.util.Date;
 public class Message {
 	private int senderId;
 	private int recipientId;
-	private int content;
+	private String content;
 	private Date delivery_time;
+	private boolean delivered = false;
 	
 	private int id;
 	public int getId() {
@@ -27,10 +28,10 @@ public class Message {
 	public void setRecipientId(int recipientId) {
 		this.recipientId = recipientId;
 	}
-	public int getContent() {
+	public String getContent() {
 		return content;
 	}
-	public void setContent(int content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 	public Date getDelivery_time() {
@@ -38,5 +39,11 @@ public class Message {
 	}
 	public void setDelivery_time(Date delivery_time) {
 		this.delivery_time = delivery_time;
+	}
+	public boolean isDelivered() {
+		return delivered;
+	}
+	public void setDelivered(boolean delivered) {
+		this.delivered = delivered;
 	}
 }

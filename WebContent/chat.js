@@ -1,9 +1,12 @@
 var ChatEngine=function(){
      var loggedUserName=" ";
      var loggedUserProfilePic=" ";
+     var contactId = " ";
+
      var contactName=" ";     
      var contactProfilePic=" ";
-     var i = null;
+     var userId = "  ";
+
      //var msg="";
      var chatZone=document.getElementById("chatZone");
      //var oldata ="";
@@ -11,14 +14,13 @@ var ChatEngine=function(){
      var xhr=" ";
      //initialzation
      this.init=function(){
-     	var contactId = getUrlParameter('contactId');
-     	var userId = getUrlParameter('userId');
-     	console.log(contactId);
-     	console.log(userId);
+     	contactId = getUrlParameter('contactId');
+     	userId = getUrlParameter('userId');
         // Set parameters for user
         $.getJSON("http://localhost:8080/messenger/getUserInfo?userID=" + userId, callbackLoggedUser);
         // Set parameters for contact
         $.getJSON("http://localhost:8080/messenger/getUserInfo?userID=" + contactId, callbackContact);
+        receiveMessages();
      };
      
 	 function callbackLoggedUser(data){
@@ -29,6 +31,7 @@ var ChatEngine=function(){
 	 function callbackContact(data){
 		contactName = data['name'];
 		contactProfilePic = data['photoFile'];
+		console.log(contactProfilePic);
 	 }
 
 	 var getUrlParameter = function getUrlParameter(sParam) {
@@ -49,7 +52,7 @@ var ChatEngine=function(){
      //For sending message
      this.sendMsg=function(){ 
           msg=document.getElementById("message").value;
-          console.log(msg);
+          //console.log(msg);
           //chatZone.innerHTML+='<div class="chatmsg"><b>'+name+'</b>: '+msg+'<br/></div>';
           chatZone.innerHTML += 
           	'<div class="direct-chat-msg right">' +
@@ -65,19 +68,20 @@ var ChatEngine=function(){
 			  '<!-- /.direct-chat-text -->' +
 			'</div>';
 		  document.getElementById("message").value = '';
-          //oldata='<div class="chatmsg"><b>'+name+'</b>: '+msg+'<br/></div>';          
-          //this.ajaxSent();  
+		  //oldata='<div class="chatmsg"><b>'+name+'</b>: '+msg+'<br/></div>';          
+          this.ajaxSent();  
           return false;
      };
      //sending message to server
-     /*this.ajaxSent=function(){
+     this.ajaxSent=function(){
+          //console.log('localhost:8080/messenger/chat_process?msg="'+msg+'"&userId='+userId+'&contactId='+contactId);
           try{
                xhr=new XMLHttpRequest();
           }
           catch(err){
                alert(err);
           }
-          xhr.open('GET','chatprocess.php?msg='+msg+'&name='+name,false);
+          xhr.open('GET','http://localhost:8080/messenger/chat_process?msg="'+msg+'"&userId='+userId+'&contactId='+contactId,false);
           xhr.onreadystatechange = function(){
                if(xhr.readyState == 4) {
                     if(xhr.status == 200) {
@@ -86,7 +90,7 @@ var ChatEngine=function(){
                }     
           };
           xhr.send();
-     };*/
+     };
      //HTML5 SSE(Server Sent Event) initilization
      /*this.initSevr=function(){
           sevr = new EventSource('chatprocess.php');
@@ -97,6 +101,34 @@ var ChatEngine=function(){
           }
           };     
      };*/
+
+    
+	window.setInterval(function(){
+		receiveMessages();
+	}, 2000);
+
+	function receiveMessages(){
+		$.getJSON("http://localhost:8080/messenger/message_pool?userId=" + userId + "&contactId=" + contactId, callbackReceiveMessages);
+	}
+
+	function callbackReceiveMessages(data){
+		console.log(data);
+		$.each (data, function (key, value) {
+				chatZone.innerHTML += 
+		          	'<div class="direct-chat-msg">' +
+					  '<div class="direct-chat-info clearfix">' +
+					    '<span class="direct-chat-name pull-left">' + contactName + '</span>'  +
+					    //'<span class="direct-chat-timestamp pull-right">27 Mai 14:31</span>' +
+					  '</div>' +
+					  '<!-- /.direct-chat-info -->' +
+					  '<img class="direct-chat-img" src= "img/' + contactProfilePic + '" alt="Message User Image"><!-- /.direct-chat-img -->' +
+					  '<div class="direct-chat-text col-md-5">' +
+					    value +
+					  '</div>' +
+					  '<!-- /.direct-chat-text -->' +
+					'</div>';
+		});
+	}
 
     this.getJSONP=function(url, success) {
 	    var ud = '_' + +new Date,

@@ -30,8 +30,8 @@ public class LoginServlet extends HttpServlet{
 		if(userAuthenticated != null){
 			dao.updateUserStatus(userAuthenticated.getId(), "ONLINE");
 			Cookie loginCookie = new Cookie("id", String.valueOf(userAuthenticated.getId()));
-			//setting cookie to expire in 60 mins
-			loginCookie.setMaxAge(60*60);
+			//setting cookie to expire in 120 mins
+			loginCookie.setMaxAge(120*60);
 			response.addCookie(loginCookie);
 			response.sendRedirect("inicio.jsp");
 		}else{

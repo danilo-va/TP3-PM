@@ -288,33 +288,31 @@
               <!-- Conversations are loaded here -->
               <div id="chatZone" class="direct-chat-messages" style="height:70vh">
                 <!-- Message. Default to the left -->
-                <div class="direct-chat-msg">
+                <!--<div class="direct-chat-msg">
                   <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-left"> <% out.print(contactUser.getName()); %> </span>
+                    <span class="direct-chat-name pull-left"> NOME </span>
                     <span class="direct-chat-timestamp pull-right">27 Mai 14:30</span>
                   </div>
-                  <!-- /.direct-chat-info -->
-                  <img class="direct-chat-img" src= <% out.print("'img/" + contactUser.getPhotoFile() + "'"); %> alt="Message User Image"><!-- /.direct-chat-img -->
+                  
+                  <img class="direct-chat-img" src= 'img/imagem' alt="Message User Image">
                   <div class="direct-chat-text col-md-5">
                     Você é muito legal!
                   </div>
-                  <!-- /.direct-chat-text -->
-                </div>
-                <!-- /.direct-chat-msg -->
+                  
+                </div> -->
+                
 
                 <!-- Message to the right -->
-                <div class="direct-chat-msg right">
+                <!-- ><div class="direct-chat-msg right">
                   <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-right"><% out.print(loggedUser.getName()); %></span>
+                    <span class="direct-chat-name pull-right">NOME</span>
                     <span class="direct-chat-timestamp pull-left">27 Mai 14:31</span>
                   </div>
-                  <!-- /.direct-chat-info -->
-                  <img class="direct-chat-img" src= <% out.print("'img/" + loggedUser.getPhotoFile() + "'"); %> alt="Message User Image"><!-- /.direct-chat-img -->
+                  <img class="direct-chat-img" src= 'img/IMAGEM' alt="Message User Image">
                   <div class="direct-chat-text col-md-5 pull-right">
                     <i class = "pull-right">Obrigado!</i>
                   </div>
-                  <!-- /.direct-chat-text -->
-                </div>
+                </div>-->
                 <!-- /.direct-chat-msg -->
               </div>
               <!--/.direct-chat-messages-->
