@@ -68,7 +68,12 @@ var ChatEngine=function(){
 			  '<!-- /.direct-chat-text -->' +
 			'</div>';
 		  document.getElementById("message").value = '';
-		  //oldata='<div class="chatmsg"><b>'+name+'</b>: '+msg+'<br/></div>';          
+		  //oldata='<div class="chatmsg"><b>'+name+'</b>: '+msg+'<br/></div>';        
+		  
+
+			var objDiv = document.getElementById("chatZone");
+			objDiv.scrollTop = objDiv.scrollHeight;
+		  
           this.ajaxSent();  
           return false;
      };
@@ -128,9 +133,6 @@ var ChatEngine=function(){
 					  '<!-- /.direct-chat-text -->' +
 					'</div>';
 		});
-		
-		var objDiv = document.getElementById("chatZone");
-		objDiv.scrollTop = objDiv.scrollHeight;
 	}
 
     this.getJSONP=function(url, success) {
