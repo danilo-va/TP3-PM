@@ -44,7 +44,7 @@ private Connection connection;
 		ArrayList<String> messages = new ArrayList<String>();
 		ArrayList<Integer>messagesDelivered = new ArrayList<Integer>();
 		String sql = "SELECT * FROM message WHERE sender_id = " + contactId + " AND recipient_id = " + userId + " AND delivered = 0";
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 		try {
 			stmt = this.connection.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -52,20 +52,34 @@ private Connection connection;
 				messages.add(rs.getString("content"));
 				messagesDelivered.add(rs.getInt("id"));
 			}
-			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}finally{
+			try {
+				stmt.close();
+				this.connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
 		}
 		// Setar msgs pra lida
 		for(int messageId : messagesDelivered){
+			this.connection = new ConnectionFactory().getConnection();
 			sql = "UPDATE message SET delivered = '1' WHERE message.id = " + messageId;
 			try {
 				stmt = connection.prepareStatement(sql);
 				// Execute update operation
 				stmt.execute();
-				stmt.close();
+				
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
+			}finally{
+				try {
+					stmt.close();
+					this.connection.close();
+				} catch (SQLException e) {
+					throw new RuntimeException(e);
+				}
 			}
 		}
 		
