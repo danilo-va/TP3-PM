@@ -209,14 +209,6 @@
             <i class="fa fa-th"></i> <span>Início</span>
           </a>
         </li>
-        <li>
-          <a href="chat.jsp">
-            <i class="fa fa-edit"></i> <span>Chat</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">5</small>
-            </span>
-          </a>
-        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i> <span>Contatos</span>
@@ -226,13 +218,24 @@
             </span>
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
-            <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
-            <li><a href="removeContact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
 	        <li><a href="#"><i class="fa fa-circle text-green"></i> <span>Danilo</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle text-red"></i> <span>Manoel</span></a></li>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">5</small>
+            </span>
 	        <li><a href="#"><i class="fa fa-circle text-yellow"></i> <span>Kuaty</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle "></i> <span>Nhonho</span></a></li>
           </ul>
+        </li>
+        <li>
+          <a href="addContact.jsp">
+            <i class="fa fa-user-plus"></i><span>Adicionar contato</span>
+          </a>
+        </li>
+        <li>
+          <a href="removeContact.jsp">
+            <i class="fa fa-user-times"></i><span>Remover contato</span>
+          </a>
         </li>
       </ul>
     </section>

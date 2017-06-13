@@ -10,7 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Messenger - Edit</title>
+  <title>Messenger - Remove</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -207,15 +207,7 @@
             <i class="fa fa-th"></i> <span>Início</span>
           </a>
         </li>
-        <li>
-          <a href="chat.jsp">
-            <i class="fa fa-edit"></i> <span>Chat</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">5</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview active">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i> <span>Contatos</span>
             <span class="pull-right-container">
@@ -224,13 +216,24 @@
             </span>
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
-            <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
-            <li><a href="removeContact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
 	        <li><a href="#"><i class="fa fa-circle text-green"></i> <span>Danilo</span></a></li>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">5</small>
+            </span>
 	        <li><a href="#"><i class="fa fa-circle text-red"></i> <span>Manoel</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle text-yellow"></i> <span>Kuaty</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle "></i> <span>Nhonho</span></a></li>
           </ul>
+        </li>
+        <li>
+          <a href="addContact.jsp">
+            <i class="fa fa-user-plus"></i><span>Adicionar contato</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="removeContact.jsp">
+            <i class="fa fa-user-times"></i><span>Remover contato</span>
+          </a>
         </li>
       </ul>
     </section>

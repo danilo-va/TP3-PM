@@ -230,13 +230,21 @@
             </span>
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
-            <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
-            <li><a href="removeContact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
 	        <li><a href="#"><i class="fa fa-circle text-green"></i> <span>Danilo</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle text-red"></i> <span>Manoel</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle text-yellow"></i> <span>Kuaty</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle "></i> <span>Nhonho</span></a></li>
           </ul>
+        </li>
+        <li>
+          <a href="addContact.jsp">
+            <i class="fa fa-user-plus"></i><span>Adicionar contato</span>
+          </a>
+        </li>
+        <li>
+          <a href="removeContact.jsp">
+            <i class="fa fa-user-times"></i><span>Remover contato</span>
+          </a>
         </li>
       </ul>
     </section>
