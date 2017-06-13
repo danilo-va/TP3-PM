@@ -95,6 +95,62 @@ public class UserDao {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public User getUserByUserName(String userName){
+		PreparedStatement stmt;
+		try {
+			stmt = this.connection.
+					prepareStatement("SELECT * FROM user WHERE user_name = '" + userName + "'");
+			ResultSet rs = stmt.executeQuery();
+			if(!rs.isBeforeFirst()){ // User was not found
+				return null;
+			}else{
+				User u = new User();
+				while (rs.next()) {
+					// Creating object user
+					u.setId(rs.getInt("id"));
+					u.setName(rs.getString("name"));
+					u.setUserName(rs.getString("user_name"));
+					u.setEmail(rs.getString("email"));
+					u.setPasswordHash(rs.getString("password_hash"));
+					u.setRegistrationDate(rs.getDate("registration_date"));
+					u.setPhotoFile(rs.getString("photo_file"));
+					u.setStatus(rs.getString("status"));
+				}
+				return u;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public User getUserByEmail(String email){
+		PreparedStatement stmt;
+		try {
+			stmt = this.connection.
+					prepareStatement("SELECT * FROM user WHERE email = '" + email + "'");
+			ResultSet rs = stmt.executeQuery();
+			if(!rs.isBeforeFirst()){ // User was not found
+				return null;
+			}else{
+				User u = new User();
+				while (rs.next()) {
+					// Creating object user
+					u.setId(rs.getInt("id"));
+					u.setName(rs.getString("name"));
+					u.setUserName(rs.getString("user_name"));
+					u.setEmail(rs.getString("email"));
+					u.setPasswordHash(rs.getString("password_hash"));
+					u.setRegistrationDate(rs.getDate("registration_date"));
+					u.setPhotoFile(rs.getString("photo_file"));
+					u.setStatus(rs.getString("status"));
+				}
+				return u;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	public void updateUserInfo(User user){
 		String sql = "UPDATE user SET name = ?, user_name = ?, email = ? WHERE user.id = ?;";

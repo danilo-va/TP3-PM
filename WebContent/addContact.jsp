@@ -216,21 +216,6 @@
             </span>
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
-          	<%
-          		for(User users : user){
-          			out.print("<li><a href=\"#\">");
-          			if(user.getStatus().equals("online"))
-          				out.print("<i class=\"fa fa-circle text-green\"></i>");
-          			if(user.getStatus().equals("busy"))
-          				out.print("<i class=\"fa fa-circle text-red\"></i>");
-          			if(user.getStatus().equals("away"))
-          				out.print("<i class=\"fa fa-circle text-yellow\"></i>");
-          			if(user.getStatus().equals("invisible"))
-          				out.print("<i class=\"fa fa-circle\"></i>");
-
-          			out.print("<span>" + user.getName() + "</span></a></li>");
-          		}
-          	%>
 	        <li><a href="#"><i class="fa fa-circle text-green"></i> <span>Danilo</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle text-red"></i> <span>Manoel</span></a></li>
             <span class="pull-right-container">
@@ -275,23 +260,16 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-body">
-        	<h4 class="box-title">Buscar pelo nome</h4>
-        	<form action="UpdateUserInfoServlet" method = "post" onsubmit="return validatePersonalInfoFields(this)">
-        		<input type="text" class="form-control" placeholder="Nome completo" name="newName" id="newName" value='<% out.print(loggedUser.getName()); %>'>
-        		<br>
-        		<button type="submit" class="btn btn-default btn-flat">Pesquisar</button>
-        	</form>
-        	<hr>
-        	<h4 class="box-title">Buscar pelo nome de usuário</h4>
-        	<form action="UpdateUserPasswordServlet" method="post" onsubmit="return validateSecurityFields(this)">
-        		<input type="Usuário" class="form-control" placeholder="Usuário" name="newUserName" id="newUserName" value='<% out.print(loggedUser.getUserName()); %>'>
+        	<h4 class="box-title">Adicionar por nome de usuário</h4>
+        	<form action="AddContactServlet" method="post" onsubmit="return validateSecurityFields(this)">
+        		<input class="form-control" placeholder="Usuário" name="userNameToAdd" id="userNameToAdd">
         		<br>
         		<button type="submit" class="btn btn-default btn-flat">Pesquisar</button> 
         	</form>
         	<hr>
-        	<h4 class="box-title">Buscar pelo email</h4>
-        	<form action="UpdateUserInfoServlet" method = "post" onsubmit="return validatePersonalInfoFields(this)">
-        		<input type="E-mail" class="form-control" placeholder="E-mail" name="newEmail" id="newEmail" value='<% out.print(loggedUser.getEmail()); %>'> 
+        	<h4 class="box-title">Adicionar por endereço de e-mail</h4>
+        	<form action="AddContactServlet" method = "post" onsubmit="return validatePersonalInfoFields(this)">
+        		<input class="form-control" placeholder="E-mail" name="userEmailToAdd" id="userEmailToAdd"> 
         		<br>
         		<button type="submit" class="btn btn-default btn-flat">Pesquisar</button>
         	</form>
