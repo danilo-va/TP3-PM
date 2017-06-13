@@ -228,7 +228,7 @@
             </span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="treeview active">
           <a href="#">
             <i class="fa fa-users"></i> <span>Contatos</span>
             <span class="pull-right-container">
@@ -238,7 +238,7 @@
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
             <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
-            <li><a href="removecontact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
+            <li class="active"><a href="removecontact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
           </ul>
         </li>
        <li class="header">LABELS</li>
@@ -255,12 +255,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Editar perfil
-        <small>personalize sua conta</small>
+        Remova um contato
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio.jsp"><i class="fa fa-th"></i> Iní­cio</a></li>
-        <li class="active">Perfil</li>
+        <li class="active">Remover contato</li>
       </ol>
     </section>
 
@@ -269,41 +268,16 @@
 
       <!-- Default box -->
       <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title"><% out.println(loggedUser.getName()); %></h3>
-	
-        </div>
         <div class="box-body">
-        	<h4 class="box-title">Informações Pessoais</h4>
+        	<h4 class="box-title">Selecione o contato que será removido</h4>
         	<form action="UpdateUserInfoServlet" method = "post" onsubmit="return validatePersonalInfoFields(this)">
         		<input type="text" class="form-control" placeholder="Nome completo" name="newName" id="newName" value='<% out.print(loggedUser.getName()); %>'>
-        		<input type="Usuário" class="form-control" placeholder="Usuário" name="newUserName" id="newUserName" value='<% out.print(loggedUser.getUserName()); %>'>
-        		<input type="E-mail" class="form-control" placeholder="E-mail" name="newEmail" id="newEmail" value='<% out.print(loggedUser.getEmail()); %>'> 
         		<br>
         		<button type="submit" class="btn btn-default btn-flat">Atualizar</button>
         	</form>
-        	<hr>
-        	<h4 class="box-title">Segurança</h4>
-        	<form action="UpdateUserPasswordServlet" method="post" onsubmit="return validateSecurityFields(this)">
-        		<input type="password" class="form-control" placeholder="Senha atual" name="currentPassword" id="currentPassword">
-        		<input type="password" class="form-control" placeholder="Nova senha" name="newPassword" id="newPassword">
-        		<input type="password" class="form-control" placeholder="Confirme a nova senha" name="newPasswordConfirmation" id="newPasswordConfirmation">
-        		<br>
-        		<button type="submit" class="btn btn-default btn-flat">Alterar senha</button> 
-        	</form>
-        	<hr>
-        	<h4 class="box-title">Foto de perfil</h4>
-        	<form action="upload" method="post" enctype="multipart/form-data">
-			    <input type="file" name="file" />
-			    <input type="submit" />
-			</form>
         </div>
         <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
         </div>
-        <!-- /.box-footer-->
-      </div>
       <!-- /.box -->
 
     </section>

@@ -244,7 +244,7 @@
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
             <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
-            <li><a href="removeContacr.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
+            <li><a href="removeContact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
           </ul>
         </li>
        <li class="header">LABELS</li>
