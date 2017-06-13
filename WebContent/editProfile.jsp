@@ -194,21 +194,33 @@
           <%out.println("<img src= img/" + loggedUser.getPhotoFile() + " class=\"img-circle\" alt=\"User Image\">");%>
         </div>
         <div class="pull-left info">
-          <p><% out.println(loggedUser.getName()); %></p>
+          <p><% out.println(loggedUser.getName());%></p>
           <i><% out.println(loggedUser.getUserName());%></i>
-          <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
         </div>
       </div>
+
+                <ul >
+                <li class="dropdown active span8">
+                    <a class="dropdown-toggle" id="inp_impact" data-toggle="dropdown">
+                        <i class="fa fa-circle text-success dropdown-toggle"></i>&nbsp;<span id="dropdown_title"> Online</span><span class="caret"></span></a>
+                    <ul ID="divNewNotifications" class="dropdown-menu">
+                            <li><a class="fa fa-circle text-success" href="#"> Online</a>
+                            <li><a class="fa fa-circle text-danger" href="#"> Ocupado</a></li>       
+                            <li><a class="fa fa-circle text-warning" href="#"> Ausente</a></li>      
+                            <li><a class="fa fa-circle" href="#"> Invisível</a></li>  
+                    </ul>
+                </li>
+            </ul>
 
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
         <li>
           <a href="inicio.jsp">
-            <i class="fa fa-th"></i> <span>Iní­cio</span>
+            <i class="fa fa-th"></i> <span>Início</span>
           </a>
         </li>
-        <li>
+        <li class="active">
           <a href="chat.jsp">
             <i class="fa fa-edit"></i> <span>Chat</span>
             <span class="pull-right-container">
@@ -225,11 +237,11 @@
             </span>
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
-            <li><a href="tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+            <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
+            <li><a href="removeContacr.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
           </ul>
         </li>
-        <li class="header">LABELS</li>
+       <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
@@ -313,18 +325,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3.1.1 -->
-<script src="../plugins/jQuery/jquery-3.1.1.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<!-- Slimscroll -->
-<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
+<script src="javascript/adminlte.min.js"></script>
 </body>
 
 <script language="javascript">

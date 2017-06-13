@@ -243,11 +243,11 @@
             </span>
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
-            <li><a href="tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+            <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
+            <li><a href="removeContacr.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
           </ul>
         </li>
-        <li class="header">LABELS</li>
+       <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
@@ -348,18 +348,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3.1.1 -->
-<script src="../plugins/jQuery/jquery-3.1.1.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<!-- Slimscroll -->
-<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
+<script src="javascript/adminlte.min.js"></script>
 </body>
 <script type="text/javascript" src="chat.js"></script>
 </html>
