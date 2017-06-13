@@ -220,7 +220,7 @@
             <i class="fa fa-th"></i> <span>Início</span>
           </a>
         </li>
-        <li class="active">
+        <li>
           <a href="chat.jsp">
             <i class="fa fa-edit"></i> <span>Chat</span>
             <span class="pull-right-container">
@@ -238,7 +238,7 @@
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
             <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
-            <li><a href="removeContacr.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
+            <li><a href="removecontact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
           </ul>
         </li>
        <li class="header">LABELS</li>
@@ -271,14 +271,7 @@
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title"><% out.println(loggedUser.getName()); %></h3>
-
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
+	
         </div>
         <div class="box-body">
         	<h4 class="box-title">Informações Pessoais</h4>
@@ -357,5 +350,12 @@
 		return valid;
 	}
 </script>
+<script>
+  $('.dropdown-toggle').dropdown();
 
+
+  $('#divNewNotifications li').on('click', function() {
+      $('#dropdown_title').html($(this).find('a').html());
+      });
+</script>
 </html>

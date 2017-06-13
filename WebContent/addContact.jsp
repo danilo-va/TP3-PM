@@ -10,7 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Messenger - Chat</title>
+  <title>Messenger - Edit</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -41,7 +41,6 @@
 	String userId = null;
 	User loggedUser = null;
 	Cookie[] cookies = request.getCookies();
-	UserDao dao = new UserDao();
 	if(cookies !=null){
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("id")) userId = cookie.getValue();
@@ -50,13 +49,9 @@
 	if(userId == null){
 		response.sendRedirect("login.jsp");
 	}else{ // Load user
-		dao = new UserDao();
+		UserDao dao = new UserDao();
 		loggedUser = dao.getUser(Integer.parseInt(userId));
 	}
-	
-	//Chat related objects
-	int contactId = Integer.parseInt(request.getParameter("contactId"));
-	User contactUser = dao.getUser(contactId);
 %>
 <div class="wrapper">
 
@@ -97,7 +92,7 @@
                         <img src="img/manoel.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        <% out.println(loggedUser.getName()); %>
+                        Manoel Júnior
                         <small><i class="fa fa-clock-o"></i> 5 mins</small>
                       </h4>
                       <p>Você é muito legal!</p>
@@ -144,16 +139,15 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              
-              <%out.println("<img src=\"img/" + loggedUser.getPhotoFile() + "\" class=\"user-image\" alt=\"User Image\">");%>
-              <span class="hidden-xs"><% out.println(loggedUser.getName());%></span>
+				<%out.println("<img src=\"img/" + loggedUser.getPhotoFile() + "\" class=\"user-image\" alt=\"User Image\">");%>
+            	<span class="hidden-xs"><% out.println(loggedUser.getName()); %></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <%out.println("<img src=\"img/" + loggedUser.getPhotoFile() + "\" class=\"img-circle\" alt=\"User Image\">");%>
                 <p>
-                  <% out.println(loggedUser.getName());%>
+                  <% out.println(loggedUser.getName()); %>
                   <small>Membro desde 
                   	<% 
                   		out.print(new SimpleDateFormat("MMM").format(loggedUser.getRegistrationDate()) + 
@@ -163,10 +157,10 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="editProfile.jsp" class="btn btn-default btn-flat">Editar perfil</a>                  
+                  <a href="editProfile.jsp" class="btn btn-default btn-flat">Editar perfil</a>
                 </div>
                 <div class="pull-right">
-                	<form action="LogoutServlet" method="post">
+                  	<form action="LogoutServlet" method="post">
                 		<button type="submit" class="btn btn-default btn-flat">Encerrar Sessão</button>
                 	</form>
                 </div>
@@ -226,7 +220,7 @@
             <i class="fa fa-th"></i> <span>Início</span>
           </a>
         </li>
-        <li class="active">
+        <li>
           <a href="chat.jsp">
             <i class="fa fa-edit"></i> <span>Chat</span>
             <span class="pull-right-container">
@@ -234,7 +228,7 @@
             </span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="treeview active">
           <a href="#">
             <i class="fa fa-users"></i> <span>Contatos</span>
             <span class="pull-right-container">
@@ -243,7 +237,7 @@
             </span>
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
-            <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
+            <li class="active"><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
             <li><a href="removeContact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
           </ul>
         </li>
@@ -261,97 +255,89 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Chat
+        Adicione um novo contato
       </h1>
       <ol class="breadcrumb">
-        <li><a href="inicio.jsp"><i class="fa fa-th"></i> Início</a></li>
-        <li class="active">Chat</li>
+        <li><a href="inicio.jsp"><i class="fa fa-th"></i> Iní­cio</a></li>
+        <li class="active">Adicionar um contato</li>
       </ol>
     </section>
 
     <!-- Main content -->
-    <section class="content" style="height:80vh">
+    <section class="content">
 
-
-      <!-- =========================================================== -->
-
-      <!-- Direct Chat -->
-      <div class="row" style="height:80vh">
-        <div class="col-md-12" style="height:80vh">
-          <!-- DIRECT CHAT PRIMARY -->
-          <div class="box box-primary direct-chat direct-chat-primary" style="height:80vh">
-            <div class="box-header with-border">
-              <h3 class="box-title"> <% out.print(contactUser.getName()); %> </h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body" style="height:70vh">
-              <!-- Conversations are loaded here -->
-              <div id="chatZone" class="direct-chat-messages" style="height:70vh">
-                <!-- Message. Default to the left -->
-                <!--<div class="direct-chat-msg">
-                  <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-left"> NOME </span>
-                    <span class="direct-chat-timestamp pull-right">27 Mai 14:30</span>
-                  </div>
-                  
-                  <img class="direct-chat-img" src= 'img/imagem' alt="Message User Image">
-                  <div class="direct-chat-text col-md-5">
-                    Você é muito legal!
-                  </div>
-                  
-                </div> -->
-                
-
-                <!-- Message to the right -->
-                <!-- ><div class="direct-chat-msg right">
-                  <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-right">NOME</span>
-                    <span class="direct-chat-timestamp pull-left">27 Mai 14:31</span>
-                  </div>
-                  <img class="direct-chat-img" src= 'img/IMAGEM' alt="Message User Image">
-                  <div class="direct-chat-text col-md-5 pull-right">
-                    <i class = "pull-right">Obrigado!</i>
-                  </div>
-                </div>-->
-                <!-- /.direct-chat-msg -->
-              </div>
-              <!--/.direct-chat-messages-->
-
-             
-              <!-- /.direct-chat-pane -->
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-              <form onsubmit="return chat.sendMsg()">
-                <div class="input-group">
-                  <input type="text" name="message" id="message" placeholder="Type Message ..." class="form-control">
-                      <span class="input-group-btn">
-                        <!-- <button type="submit" class="btn btn-primary btn-flat">Send</button> -->
-                      	<input type="button" class="btn btn-primary btn-flat" value="Submit" onclick="chat.sendMsg(); return false;"/>
-                      </span>
-                </div>
-              </form>
-            </div>
-            <!-- /.box-footer-->
-          </div>
-          <!--/.direct-chat -->
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-body">
+        	<h4 class="box-title">Buscar pelo nome</h4>
+        	<form action="UpdateUserInfoServlet" method = "post" onsubmit="return validatePersonalInfoFields(this)">
+        		<input type="text" class="form-control" placeholder="Nome completo" name="newName" id="newName" value='<% out.print(loggedUser.getName()); %>'>
+        		<br>
+        		<button type="submit" class="btn btn-default btn-flat">Pesquisar</button>
+        	</form>
+        	<hr>
+        	<h4 class="box-title">Buscar pelo nome de usuário</h4>
+        	<form action="UpdateUserPasswordServlet" method="post" onsubmit="return validateSecurityFields(this)">
+        		<input type="Usuário" class="form-control" placeholder="Usuário" name="newUserName" id="newUserName" value='<% out.print(loggedUser.getUserName()); %>'>
+        		<br>
+        		<button type="submit" class="btn btn-default btn-flat">Pesquisar</button> 
+        	</form>
+        	<hr>
+        	<h4 class="box-title">Buscar pelo email</h4>
+        	<form action="UpdateUserInfoServlet" method = "post" onsubmit="return validatePersonalInfoFields(this)">
+        		<input type="E-mail" class="form-control" placeholder="E-mail" name="newEmail" id="newEmail" value='<% out.print(loggedUser.getEmail()); %>'> 
+        		<br>
+        		<button type="submit" class="btn btn-default btn-flat">Pesquisar</button>
+        	</form>
         </div>
+        <!-- /.box-body -->
       </div>
-      <!-- /.row -->
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
 
       
       
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
+  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
 <script src="javascript/adminlte.min.js"></script>
 </body>
-<script type="text/javascript" src="chat.js"></script>
-</html>
+
+<script language="javascript">
+	function validateSecurityFields(){		
+		var valid = true;
+		if(document.getElementById('currentPassword').value == "" || 
+	   	document.getElementById('newPassword').value == "" ||
+	   	document.getElementById('newPasswordConfirmation').value == ""){
+	   		valid = false;
+			alert("Todos os campos são obrigatórios!");
+		}
+		
+		if(document.getElementById('newPassword').value !=
+				document.getElementById('newPasswordConfirmation').value){
+			valid = false;
+			alert("Senhas não coincidem! Por favor, tente novamente.");
+		}
+		return valid;
+	}
+	
+	function validatePersonalInfoFields(){		
+		var valid = true;
+		if(document.getElementById('newName').value == "" || 
+	   	document.getElementById('newUserName').value == "" ||
+	   	document.getElementById('newEmail').value == ""){
+	   		valid = false;
+			alert("Todos os campos são obrigatórios!");
+		}
+		return valid;
+	}
+</script>
 <script>
   $('.dropdown-toggle').dropdown();
 
@@ -360,3 +346,4 @@
       $('#dropdown_title').html($(this).find('a').html());
       });
 </script>
+</html>

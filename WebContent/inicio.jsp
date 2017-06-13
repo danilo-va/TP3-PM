@@ -217,12 +217,12 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
-        <li>
+        <li class="active">
           <a href="inicio.jsp">
             <i class="fa fa-th"></i> <span>Início</span>
           </a>
         </li>
-        <li class="active">
+        <li>
           <a href="chat.jsp">
             <i class="fa fa-edit"></i> <span>Chat</span>
             <span class="pull-right-container">
@@ -240,7 +240,7 @@
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
             <li><a href="addContact.jsp"><i class="fa fa-circle-o"></i> Adicionar contato</a></li>
-            <li><a href="removeContacr.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
+            <li><a href="removecontact.jsp"><i class="fa fa-circle-o"></i> Remover contato</a></li>
           </ul>
         </li>
        <li class="header">LABELS</li>
@@ -278,10 +278,6 @@
 
                   <div class="box-tools pull-right">
                     <span class="label label-success">8 novos membros</span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
-                    </button>
                   </div>
                 </div>
                 <!-- /.box-header -->
@@ -547,4 +543,12 @@
 
 <script src="javascript/adminlte.min.js"></script>
 </body>
+<script>
+  $('.dropdown-toggle').dropdown();
+
+
+  $('#divNewNotifications li').on('click', function() {
+      $('#dropdown_title').html($(this).find('a').html());
+      });
+</script>
 </html>
