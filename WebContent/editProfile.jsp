@@ -266,8 +266,11 @@
         <div class="box-body">
         	<h4 class="box-title">Informações Pessoais</h4>
         	<form action="UpdateUserInfoServlet" method = "post" onsubmit="return validatePersonalInfoFields(this)">
+        		<i>Nome completo:</i>
         		<input type="text" class="form-control" placeholder="Nome completo" name="newName" id="newName" value='<% out.print(loggedUser.getName()); %>'>
+        		<i>Nome de usuário:</i>
         		<input type="Usuário" class="form-control" placeholder="Usuário" name="newUserName" id="newUserName" value='<% out.print(loggedUser.getUserName()); %>'>
+        		<i>Email:</i>
         		<input type="E-mail" class="form-control" placeholder="E-mail" name="newEmail" id="newEmail" value='<% out.print(loggedUser.getEmail()); %>'> 
         		<br>
         		<button type="submit" class="btn btn-default btn-flat">Atualizar</button>
@@ -288,11 +291,6 @@
 			    <input type="submit" />
 			</form>
         </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
-        </div>
-        <!-- /.box-footer-->
       </div>
       <!-- /.box -->
 

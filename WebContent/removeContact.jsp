@@ -217,9 +217,6 @@
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
 	        <li><a href="#"><i class="fa fa-circle text-green"></i> <span>Danilo</span></a></li>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">5</small>
-            </span>
 	        <li><a href="#"><i class="fa fa-circle text-red"></i> <span>Manoel</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle text-yellow"></i> <span>Kuaty</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle "></i> <span>Nhonho</span></a></li>
