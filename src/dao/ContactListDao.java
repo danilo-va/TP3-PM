@@ -100,11 +100,39 @@ public class ContactListDao {
 		}
 	}
 	
-	public void acceptContactRequest(int reqId){
-		String sql = "UPDATE contact_list SET accepted = '1' WHERE contact_list.id = ?";
+	public ContactList getContactList(int clId){
+		String sql = "SELECT * FROM contact_list WHERE id = ?";
+		PreparedStatement stmt;
 		try {
-			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			stmt = this.connection.prepareStatement(sql);
+			stmt.setInt(1, clId);
+			ResultSet rs = stmt.executeQuery();
+			ContactList cl = new ContactList();
+			while (rs.next()) {
+				// Creating object ContactList				
+				cl.setId(rs.getInt("id"));
+				cl.setUserId(rs.getInt("user_id"));
+				cl.setContactId(rs.getInt("contact_id"));
+				cl.setAccpeted(rs.getBoolean("accepted"));
+			}
+			return cl;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void acceptContactRequest(int reqId){
+		String sql1 = "UPDATE contact_list SET accepted = '1' WHERE contact_list.id = ?";
+		ContactList cl = this.getContactList(reqId);
+		System.out.println(cl.getId());
+		String sql2 = "INSERT INTO contact_list(user_id, contact_id, accepted) VALUES (?, ?, 1);";
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement(sql1);
 			stmt.setInt(1, reqId);
+			stmt.executeUpdate();
+			stmt = this.connection.prepareStatement(sql2);
+			stmt.setInt(1, cl.getContactId());
+			stmt.setInt(2, cl.getUserId());
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
