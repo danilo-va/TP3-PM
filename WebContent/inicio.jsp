@@ -115,7 +115,7 @@
               <%
               	ContactListDao clDao = new ContactListDao();
               	ArrayList<ContactList> requests = clDao.getContactListRequest(loggedUser.getId());
-              	//ArrayList<User> users = clDao.getContactsRequest(loggedUser.getId());
+              	ArrayList<User> users = clDao.getContactsRequest(loggedUser.getId());
               %>
               <span class="label label-warning"><% out.print(requests.size()); %></span>
             </a>
@@ -240,6 +240,19 @@
 	        <li><a href="#"><i class="fa fa-circle text-red"></i> <span>Manoel</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle text-yellow"></i> <span>Kuaty</span></a></li>
 	        <li><a href="#"><i class="fa fa-circle "></i> <span>Nhonho</span></a></li>
+	        <%
+	        	String user_status = "busy";
+	        	for(int user_name=0; user_name<4; user_name++){
+	        		if(user_status.equals("online"))
+	        			out.println("<li><a href=\"#\"><i class=\"fa fa-circle text-green \"></i> <span>" + user_name + "</span></a></li>");
+	        		if(user_status.equals("busy"))
+	        			out.println("<li><a href=\"#\"><i class=\"fa fa-circle text-red \"></i> <span>" + user_name + "</span></a></li>");
+	        		if(user_status.equals("away"))
+	        			out.println("<li><a href=\"#\"><i class=\"fa fa-circle text-yellow \"></i> <span>" + user_name + "</span></a></li>");
+	        		if(user_status.equals("invisible"))
+	        			out.println("<li><a href=\"#\"><i class=\"fa fa-circle \"></i> <span>" + user_name + "</span></a></li>");
+	        	}
+	        %>
           </ul>
         </li>
         <li>
