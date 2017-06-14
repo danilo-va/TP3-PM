@@ -231,11 +231,8 @@
           </a>
         </li>
         <li class="active">
-          <a href="chat.jsp">
+          <a>
             <i class="fa fa-edit"></i> <span>Chat</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">5</small>
-            </span>
           </a>
         </li>
         <li class="treeview">
