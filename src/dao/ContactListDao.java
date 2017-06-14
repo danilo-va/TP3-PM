@@ -84,14 +84,15 @@ public class ContactListDao {
 	public ArrayList<User> getContacts(int userId){
 		ArrayList<User> contacts = new ArrayList<User>();
 		PreparedStatement stmt;
-		String sql = "SELECT * FROM contact_list WHERE contact_id = ? AND accepted = 1";
+		String sql = "SELECT * FROM contact_list WHERE user_id = ? AND accepted = 1";
 		UserDao userDao = new UserDao();
 		try {
 			stmt = this.connection.prepareStatement(sql);
+			stmt.setInt(1, userId);;
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				// Creating object user
-				User u = userDao.getUser(rs.getInt("user_id"));
+				User u = userDao.getUser(rs.getInt("contact_id"));
 				contacts.add(u);
 			}
 			return contacts;

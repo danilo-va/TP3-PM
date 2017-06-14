@@ -88,6 +88,7 @@ public class UserDao {
 					u.setPasswordHash(rs.getString("password_hash"));
 					u.setRegistrationDate(rs.getDate("registration_date"));
 					u.setPhotoFile(rs.getString("photo_file"));
+					u.setStatus(rs.getString("status"));
 				}
 				return u;
 			}
