@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+
+% Packages used
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\title{\LARGE \textbf{\uppercase{Programação modular\\Trabalho prático 3: Aplicação de Chat}} }
+\date{12 de junho, 2017}
+\author{Rafael Rubbioli\\
+\and Manoel da Rocha\\
+\and Danilo Viana\\ Departamento de Ciência da computação, UFMG}
+\begin{document}
+	\begin{titlepage}
+		\maketitle
+	\end{titlepage}
+	\section{Introdução}
+		
+		A compressão espaço-tempo é um dos fenômenos mais importantes da atualidade de acordo com o geógrafo David Harvey. Esse fenômeno consiste na "redução" do espaço e tempo utilizados para fazer as coisas. Nota-se que com o advento da internet e dos avanços na tecnologia, essas "distâncias" de tempo e espaço se reduzem ainda mais. Um dos exemplos disso são as aplicações de troca de mensagens. Isso nos motivou a escolher o tema deste trabalho, o Messenger.
+
+		Este trabalho consiste na aplicação de vários conceitos aprendidos ao longo do semestre em Programação Modular para fazer todas as etapas do desenvolvimento de uma aplicação de troca de mensagens, desde o projeto até a implementação. Além disso, escolhemos fazer a nossa aplicação ser web para aprendermos conceitos novos e testar nossos conhecimentos.
+
+	\section{Desenvolvimento}
+
+		\subsection{Idéias iniciais}
+		Inicialmente fizemos um brainstorming de quais funcionalidades nosso chat deveria ter ( além da troca de mensagens ). Pensamos nas aplicações desse tipo que usamos no dia-a-dia e no que gostaríamos de usar. Dentre elas:
+		\begin{enumerate}
+			\item Criação de perfil com foto
+			\item Status: online, ocupado, invisível
+			\item Contatos com pedidos de amizade e ultima vez online
+			\item Tela de início com algumas informações importantes 
+		\end{enumerate}
+
+		\subsection{Modelagem}
+
+			Modelar é uma das partes mais importantes do desenvolvimento de um software. Para fazermos a modelagem, usamos UML = Unified Modeling Language, que torna padrão o modelo e facilita o entendimento do problema.
+
+			\begin{enumerate}
+				%\item[Diagrama de classes]
+
+				\item[Diagrama de Atividades]
+					\includegraphics[scale=0.60]{atividades.jpg}
+			\end{enumerate}
+		\subsection{Tomcat}
+
+			Para a implementação dessas funcionalidades usamos o TOMCAT que é um servidor web Java que é um servlet container, isto é, ele permite que usemos servlets e Java Server Pages (JSP).
+
+			\subsubsection{JSP}
+
+				Java Server Pages é uma tecnologia de desenvolvimento de aplicações web que suporta a criação de conteúdo dinâmico.
+
+			\subsubsection{Servlets}
+
+				Servlets são classes Java que, quando instaladas em um servidor como o TOMCAT, permitem tratar requisições do tipo web.
+
+		\subsection{Princípios de projeto}
+
+			Para o desenvolvimento do projeto, pensamos muito nos princípios que deveriam ser usados. Com o bom uso dos princípios, nosso projeto seria mais bem sucedido e geraria um software com maior qualidade e confiabilidade.
+
+			Primeiramente pensamos no SRP = Single Responsibility Principle, ou seja, fizemos classes que tem apenas uma responsabilidade. Isso nos dá uma maior compreensão do que cada classe faz e torna o código mais simples de entender e modificar.
+
+			Em seguida, pensamos no OCP = Open-Closed Principle, um dos mais importantes princípios vistos. Ele nos permite adicionar funcionalidades ao software com mais facilidade. Isso significa que ele é fechado para modificações, reduzindo a chance de gerar novos erros, mas é aberto para a extensão, caso seja necessário adicionar algo.
+
+		\subsection{Padrões de Projeto}
+
+			Os padrões de projeto são ferramentas mente úteis para o desenvolvimento. Com elas, é possível tornar algumas tarefas difíceis, trabalhosas ou que geram erros mais simples. Por isso, usamos os padrões DAO, Factory, MVC.
+
+			\subsubsection{DAO = Data acess object} É um padrao que permite separar as regras de acesso ao banco de dados da lógica. As vantagens do uso disso são que esconde os detalhes de armazenamento de dados do resto da aplicação, atua como intermediador da aplicação com o banco de dados e, por fim, evita erros de dados.
+
+			\subsubsection{Factory} É o padrão responsável por fornecer uma interface que cria famílias de objetos relacionados sem especificar a classe concreta desse objeto. A vantagem do uso do Factory é que se pode criar objetos dinamicamente sem se conhecer a classe de implementação, apenas a interface.
+
+			\subsubsection{MVC = Model View Controller} Este é o padrão que separa a aplicação em 3 camadas: o modelo, a visualização e o controlador. Com isso é possível separar a parte lógica da parte de visualização, usando o controlador para intermediar as duas. Esse modelo é um dos mais importantes vistos, suas vantagens incluem poder fazer desenvolvimento em paralelo da visualização e modelo, torna a aplicação escalável e torna muito simples incluir novos clientes.
+
+	\section{Testes}
+
+		Como a aplicação é web, para fazermos os testes decidimos usar exaustivamente o Messenger para encontrar os possíveis erros. Isso nos permite dizer que, na prática a aplicação é funcional, porém, ao usar testes, nunca podemos dizer que nao há erros. Os testes apenas são usados para encontrar os erros.
+
+	\section{Bibliografia}
+
+		Tutorial de HTML, CSS, Javascript pela w3 schools - https://www.w3schools.com/
+		Apache tomcat - http://tomcat.apache.org/
+		Tutorial JSP - https://www.tutorialspoint.com/jsp
+		Tutorial de Java web - https://www.caelum.com.br/apostila-java-web
+		
+\end{document}
