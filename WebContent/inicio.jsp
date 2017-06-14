@@ -235,7 +235,6 @@
             </span>
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
-	        
 	        <%
 	        	ArrayList<User> contacts = clDao.getContacts(loggedUser.getId());
 	        	//String user_status = "busy";

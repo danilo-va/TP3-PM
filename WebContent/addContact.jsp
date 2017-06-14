@@ -234,10 +234,23 @@
             </span>
           </a>
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
-	        <li><a href="#"><i class="fa fa-circle text-green"></i> <span>Danilo</span></a></li>
-	        <li><a href="#"><i class="fa fa-circle text-red"></i> <span>Manoel</span></a></li>
-	        <li><a href="#"><i class="fa fa-circle text-yellow"></i> <span>Kuaty</span></a></li>
-	        <li><a href="#"><i class="fa fa-circle "></i> <span>Nhonho</span></a></li>
+	        <%
+	        	ArrayList<User> contacts = clDao.getContacts(loggedUser.getId());
+	        	//String user_status = "busy";
+	        	if(contacts.size() != 0){
+	        		for(User contact : contacts){
+	        			System.out.println(contact.getStatus());
+	        			if(contact.getStatus().equals("ONLINE"))
+		        			out.println("<li><a href=\"chat.jsp?userId=" + loggedUser.getId() + "&contactId=" + contact.getId() +"\"><i class=\"fa fa-circle text-green \"></i> <span>" + contact.getName() + "</span></a></li>");
+		        		if(contact.getStatus().equals("BUSY"))
+		        			out.println("<li><a href=\"chat.jsp?userId=" + loggedUser.getId() + "&contactId=" + contact.getId() +"\"><i class=\"fa fa-circle text-red \"></i> <span>" + contact.getName() + "</span></a></li>");
+		        		if(contact.getStatus().equals("AWAY"))
+		        			out.println("<li><a href=\"chat.jsp?userId=" + loggedUser.getId() + "&contactId=" + contact.getId() +"\"><i class=\"fa fa-circle text-yellow \"></i> <span>" + contact.getName() + "</span></a></li>");
+		        		if(contact.getStatus().equals("INVISIBLE"))
+		        			out.println("<li><a href=\"chat.jsp?userId=" + loggedUser.getId() + "&contactId=" + contact.getId() +"\"><i class=\"fa fa-circle \"></i> <span>" + contact.getName() + "</span></a></li>");
+		        	}	
+	        	}
+	        %>
           </ul>
         </li>
         <li class="active">
