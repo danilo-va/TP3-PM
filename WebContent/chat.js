@@ -132,6 +132,8 @@ var ChatEngine=function(){
 					  '</div>' +
 					  '<!-- /.direct-chat-text -->' +
 					'</div>';
+				var objDiv = document.getElementById("chatZone");
+				objDiv.scrollTop = objDiv.scrollHeight;
 		});
 	}
 
