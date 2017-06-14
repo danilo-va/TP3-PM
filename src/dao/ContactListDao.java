@@ -80,4 +80,28 @@ public class ContactListDao {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void acceptContactRequest(int reqId){
+		String sql = "UPDATE contact_list SET accepted = '1' WHERE contact_list.id = ?";
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			stmt.setInt(1, reqId);
+			stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void deleteContactRequest(int reqId){
+		String sql = "DELETE FROM `contact_list` WHERE `id` = ?";
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			stmt.setInt(1, reqId);
+			stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

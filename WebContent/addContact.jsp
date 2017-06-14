@@ -1,5 +1,8 @@
 <%@ page import="dao.UserDao,
 			models.User,
+			models.ContactList,
+			dao.ContactListDao,
+			java.util.ArrayList,
 			java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html>
@@ -41,6 +44,7 @@
 	String userId = null;
 	User loggedUser = null;
 	Cookie[] cookies = request.getCookies();
+	UserDao dao = new UserDao();
 	if(cookies !=null){
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("id")) userId = cookie.getValue();
@@ -49,7 +53,7 @@
 	if(userId == null){
 		response.sendRedirect("login.jsp");
 	}else{ // Load user
-		UserDao dao = new UserDao();
+		dao = new UserDao();
 		loggedUser = dao.getUser(Integer.parseInt(userId));
 	}
 %>
@@ -108,28 +112,42 @@
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-user-plus"></i>
-              <span class="label label-warning">1</span>
+              <%
+              	ContactListDao clDao = new ContactListDao();
+              	ArrayList<ContactList> requests = clDao.getContactListRequest(loggedUser.getId());
+              %>
+              <span class="label label-warning"><% out.print(requests.size()); %></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header text-center"><b>Solicitações de amizade</b></li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  <li><!-- start message -->
-                    <a>
-                      <div class="pull-left">
-                        <img src="img/rafael.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Rafael Rubbioli
-                        <small><i class="fa fa-clock-o"></i> 1 dia</small>
-                      </h4>
-                      <div class="col-md-5">
-                        <button type="button" class="btn btn-block btn-success btn-xs">Aceitar</button>
-                        <button type="button" class="btn btn-block btn-danger btn-xs">Recusar</button>
-                      </div>
-                    </a>
-                  </li>
+                  <!-- ------------------------------------------- -->
+                  <%                                  	  
+	              	  for(ContactList req : requests){
+	                  		out.println("<li><!-- start message -->");
+	                  		out.println("<a>");
+	                  		out.println("<div class=\"pull-left\">");
+	                  		out.println("<img src=\"img/" + dao.getUser(req.getUserId()).getPhotoFile() /*user.getPhotoFile()*/ + "\" class=\"img-circle\" alt=\"User Image\">");
+	                  		out.println("</div>");
+	                  		out.println("<h4>");
+	                  		out.println(dao.getUser(req.getUserId()).getName() /*user.getName()*/);
+	                  		out.println("<!-- <small><i class=\"fa fa-clock-o\"></i> 1 dia</small> -->");
+	                  		out.println("</h4>");
+	                  		out.println("<div class=\"col-md-5\">");
+	                  		out.println("<form action=\"acceptContactRequest?reqId=" + req.getId() + "\" method=\"post\">");
+	                  		out.println("<button type=\"submit\" name=\"accContact\" class=\"btn btn-block btn-success btn-xs\">Aceitar</button>");
+	                  		out.println("</form>");
+	                  		out.println("<form action=\"rejectContactRequest?reqId=" + req.getId() + "\"method=\"post\">");
+	                  		out.println("<button type=\"submit\" name=\"rejContact\" class=\"btn btn-block btn-danger btn-xs\">Recusar</button>");
+	                  		out.println("</form>");
+	                  		out.println("</div>");
+	                  		out.println("</a>");
+	                  		out.println("</li>");                  
+	                   }
+                  %>
+                  <!-- ------------------------------------------- -->
                 </ul>
               </li>
               <li class="footer"><a href="#">Ver tudo</a></li>
