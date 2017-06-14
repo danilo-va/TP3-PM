@@ -44,7 +44,7 @@
 	String userId = null;	
 	User loggedUser = null;
 	Cookie[] cookies = request.getCookies();
-	UserDao dao = new UserDao();;
+	UserDao dao = new UserDao();
 	if(cookies !=null){
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("id")) userId = cookie.getValue();
@@ -115,7 +115,6 @@
               <%
               	ContactListDao clDao = new ContactListDao();
               	ArrayList<ContactList> requests = clDao.getContactListRequest(loggedUser.getId());
-              	ArrayList<User> users = clDao.getContactsRequest(loggedUser.getId());
               %>
               <span class="label label-warning"><% out.print(requests.size()); %></span>
             </a>
@@ -137,10 +136,10 @@
 	                  		out.println("<!-- <small><i class=\"fa fa-clock-o\"></i> 1 dia</small> -->");
 	                  		out.println("</h4>");
 	                  		out.println("<div class=\"col-md-5\">");
-	                  		out.println("<form action=\"acceptContactRequest?userId=" + loggedUser.getId() + "&contactId=" + dao.getUser(req.getUserId()).getId() + "\" method=\"post\">");
+	                  		out.println("<form action=\"acceptContactRequest?reqId=" + req.getId() + "\" method=\"post\">");
 	                  		out.println("<button type=\"submit\" name=\"accContact\" class=\"btn btn-block btn-success btn-xs\">Aceitar</button>");
 	                  		out.println("</form>");
-	                  		out.println("<form action=\"deleteContactRequest?userId=" + loggedUser.getId() + "&contactId=" + dao.getUser(req.getUserId()).getId() + "\"method=\"post\">");
+	                  		out.println("<form action=\"rejectContactRequest?reqId=" + req.getId() + "\"method=\"post\">");
 	                  		out.println("<button type=\"submit\" name=\"rejContact\" class=\"btn btn-block btn-danger btn-xs\">Recusar</button>");
 	                  		out.println("</form>");
 	                  		out.println("</div>");

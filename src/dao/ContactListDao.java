@@ -80,4 +80,47 @@ public class ContactListDao {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public ArrayList<User> getContacts(int userId){
+		ArrayList<User> contacts = new ArrayList<User>();
+		PreparedStatement stmt;
+		String sql = "SELECT * FROM contact_list WHERE contact_id = ? AND accepted = 1";
+		UserDao userDao = new UserDao();
+		try {
+			stmt = this.connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				// Creating object user
+				User u = userDao.getUser(rs.getInt("user_id"));
+				contacts.add(u);
+			}
+			return contacts;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void acceptContactRequest(int reqId){
+		String sql = "UPDATE contact_list SET accepted = '1' WHERE contact_list.id = ?";
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			stmt.setInt(1, reqId);
+			stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void deleteContactRequest(int reqId){
+		String sql = "DELETE FROM `contact_list` WHERE `id` = ?";
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			stmt.setInt(1, reqId);
+			stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
