@@ -43,7 +43,7 @@ public class AddUserServlet extends HttpServlet{
         dao.addUser(user);
         
         out.println("<script type=\"text/javascript\">");
-        out.println("alert('Cadastro realizado com sucesso! Bem vindo ao DRAMA.');");
+        out.println("alert('Cadastro realizado com sucesso! Bem vindo ao Messenger.');");
         out.println("location='login.jsp';");
         out.println("</script>");    
 	}
