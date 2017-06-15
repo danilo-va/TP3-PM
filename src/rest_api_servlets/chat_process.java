@@ -20,10 +20,17 @@ public class chat_process extends HttpServlet{
 		String recipientId = request.getParameter("contactId");
 		String content = request.getParameter("msg");
 		
+		// Remove quotation marks from message content
+		StringBuilder sb = new StringBuilder(content);
+		sb.deleteCharAt(content.length()-1);
+		sb.deleteCharAt(0);
+		String cleanedContent = sb.toString();
+		//cleanedContent.replace("\"", "\\\"");
+		
 		Message m = new Message();
 		m.setSenderId(Integer.parseInt(senderId));
 		m.setRecipientId(Integer.parseInt(recipientId));
-		m.setContent(content);
+		m.setContent(cleanedContent);
 		m.setDelivery_time(new Date());
 		
 		MessageDao dao = new MessageDao();

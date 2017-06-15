@@ -1,7 +1,9 @@
 <%@ page import="dao.UserDao,
 			models.User,
 			models.ContactList,
+			models.Message,
 			dao.ContactListDao,
+			dao.MessageDao,
 			java.util.ArrayList,
 			java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
@@ -309,32 +311,36 @@
             <div class="box-body" style="height:70vh">
               <!-- Conversations are loaded here -->
               <div id="chatZone" class="direct-chat-messages" style="height:70vh">
-                <!-- Message. Default to the left -->
-                <!--<div class="direct-chat-msg">
-                  <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-left"> NOME </span>
-                    <span class="direct-chat-timestamp pull-right">27 Mai 14:30</span>
-                  </div>
-                  
-                  <img class="direct-chat-img" src= 'img/imagem' alt="Message User Image">
-                  <div class="direct-chat-text col-md-5">
-                    Você é muito legal!
-                  </div>
-                  
-                </div> -->
-                
-
-                <!-- Message to the right -->
-                <!-- ><div class="direct-chat-msg right">
-                  <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-right">NOME</span>
-                    <span class="direct-chat-timestamp pull-left">27 Mai 14:31</span>
-                  </div>
-                  <img class="direct-chat-img" src= 'img/IMAGEM' alt="Message User Image">
-                  <div class="direct-chat-text col-md-5 pull-right">
-                    <i class = "pull-right">Obrigado!</i>
-                  </div>
-                </div>-->
+                <%
+                	MessageDao msgDao = new MessageDao();
+                	ArrayList<Message> previousMessages = new ArrayList<Message>();
+                	previousMessages = msgDao.getPreviousMessages(loggedUser.getId(), contactUser.getId());
+                	for(Message m : previousMessages){
+                		if(m.getSenderId() == loggedUser.getId()){ // Message from user
+                			out.println("<div class=\"direct-chat-msg right\">");
+                			out.println("<div class=\"direct-chat-info clearfix\">");
+                			out.println("<span class=\"direct-chat-name pull-right\">" + loggedUser.getName() + "</span>");
+                			//out.println("<span class=\"direct-chat-timestamp pull-left\">27 Mai 14:31</span>");
+                			out.println("</div>");
+                			out.println("<img class=\"direct-chat-img\" src= 'img/" + loggedUser.getPhotoFile() + "' alt=\"Message User Image\">"); 
+                			out.println("<div class=\"direct-chat-text col-md-5 pull-right\">");  
+                			out.println(m.getContent());    
+                			out.println("</div>");  
+                			out.println("</div>");
+                		}else{ // Message from contact                			
+                			out.println("<div class=\"direct-chat-msg\">");
+                			out.println("<div class=\"direct-chat-info clearfix\">"); 
+                			out.println("<span class=\"direct-chat-name pull-left\">" + contactUser.getName() + "</span>");
+                			//out.println(<span class="direct-chat-timestamp pull-right">27 Mai 14:30</span>);
+                			out.println("</div>");                              
+                			out.println("<img class=\"direct-chat-img\" src= 'img/" + contactUser.getPhotoFile() + "' alt=\"Message User Image\">");
+                			out.println("<div class=\"direct-chat-text col-md-5\">");
+                			out.println(m.getContent());
+                			out.println("</div>");                              
+                			out.println("</div>");
+                		}
+                	}
+                %>                
                 <!-- /.direct-chat-msg -->
               </div>
               <!--/.direct-chat-messages-->
@@ -346,7 +352,7 @@
             <div class="box-footer">
               <form onsubmit="return chat.sendMsg()">
                 <div class="input-group">
-                  <input type="text" name="message" id="message" placeholder="Type Message ..." class="form-control">
+                  <input autocomplete="off" type="text" name="message" id="message" placeholder="Type Message ..." class="form-control">
                       <span class="input-group-btn">
                         <!-- <button type="submit" class="btn btn-primary btn-flat">Send</button> -->
                       	<input type="button" class="btn btn-primary btn-flat" value="Submit" onclick="chat.sendMsg(); return false;"/>

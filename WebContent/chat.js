@@ -21,6 +21,8 @@ var ChatEngine=function(){
         // Set parameters for contact
         $.getJSON("http://localhost:8080/messenger/getUserInfo?userID=" + contactId, callbackContact);
         receiveMessages();
+        var objDiv = document.getElementById("chatZone");
+		objDiv.scrollTop = objDiv.scrollHeight;
      };
      
 	 function callbackLoggedUser(data){
@@ -117,7 +119,7 @@ var ChatEngine=function(){
 	}
 
 	function callbackReceiveMessages(data){
-		console.log(data);
+		//console.log(data);
 		$.each (data, function (key, value) {
 				chatZone.innerHTML += 
 		          	'<div class="direct-chat-msg">' +

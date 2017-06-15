@@ -24,9 +24,9 @@ public class message_pool extends HttpServlet{
 		messages = dao.getUnreadMessages(userId, contactId);
 		for(int i=0; i<messages.size(); i++){
 			if(i!=messages.size()-1)
-				messagesJson += ("\"" + i + "\":" + messages.get(i) + ",");
+				messagesJson += ("\"" + i + "\":\"" + messages.get(i) + "\",");
 			else
-				messagesJson += ("\"" + i + "\":" + messages.get(i));
+				messagesJson += ("\"" + i + "\":\"" + messages.get(i) + "\"");
 		}
 		messagesJson += "}";
 		//System.out.println(messagesJson);

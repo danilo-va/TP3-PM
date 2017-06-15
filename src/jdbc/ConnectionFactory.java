@@ -12,7 +12,7 @@ public class ConnectionFactory {
 			e1.printStackTrace();
 		} 
 		try {
-			return DriverManager.getConnection("jdbc:mysql://localhost/messenger", "root", "root");
+			return DriverManager.getConnection("jdbc:mysql://localhost/messenger?useSSL=false", "root", "root");
 		}catch (SQLException e) {
 			/* Relançar SQLException como RuntimeException. 
 			 * Fazemos isso para que o código que chamará a fábrica de conexões 

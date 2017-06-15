@@ -85,4 +85,38 @@ private Connection connection;
 		
 		return messages;
 	}
+	
+	public ArrayList<Message> getPreviousMessages(int userId, int contactId){
+		ArrayList<Message> messages = new ArrayList<Message>();
+		String sql = "SELECT * FROM message WHERE ((sender_id = ? AND recipient_id = ?) OR (sender_id = ? AND recipient_id = ?)) ORDER BY delivery_time";
+		PreparedStatement stmt = null;
+		try {
+			stmt = this.connection.prepareStatement(sql);
+			stmt.setInt(1, userId);
+			stmt.setInt(2, contactId);
+			stmt.setInt(3, contactId);
+			stmt.setInt(4, userId);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Message m = new Message();
+				m.setId(Integer.parseInt(rs.getString("id")));
+				m.setSenderId(Integer.parseInt(rs.getString("sender_id")));
+				m.setRecipientId(Integer.parseInt(rs.getString("recipient_id")));
+				m.setContent(rs.getString("content"));
+				m.setDelivery_time(rs.getDate("delivery_time"));
+				m.setDelivered(rs.getBoolean("delivered"));
+				messages.add(m);
+			}
+			return messages;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally{
+			try {
+				stmt.close();
+				this.connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
 }
