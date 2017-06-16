@@ -208,7 +208,17 @@
                 <ul >
                 <li class="dropdown active span8">
                     <a class="dropdown-toggle" id="inp_impact" data-toggle="dropdown">
-                        <i class="fa fa-circle text-success dropdown-toggle"></i>&nbsp;<span id="dropdown_title"><% out.print(loggedUser.getStatusString()); %></span><span class="caret"></span></a>
+                        <%
+	                       	if(loggedUser.getStatus().equals("ONLINE"))
+	                       		out.println("<i class=\"fa fa-circle text-success dropdown-toggle\"></i>&nbsp;<span id=\"dropdown_title\">" + loggedUser.getStatusString() + "</span><span class=\"caret\"></span></a>");
+	                       	else if(loggedUser.getStatus().equals("BUSY"))
+	                       		out.println("<i class=\"fa fa-circle text-red dropdown-toggle\"></i>&nbsp;<span id=\"dropdown_title\">" + loggedUser.getStatusString() + "</span><span class=\"caret\"></span></a>");
+	                       	else if(loggedUser.getStatus().equals("AWAY"))
+	                       		out.println("<i class=\"fa fa-circle text-yellow dropdown-toggle\"></i>&nbsp;<span id=\"dropdown_title\">" + loggedUser.getStatusString() + "</span><span class=\"caret\"></span></a>");
+	                       	else if(loggedUser.getStatus().equals("IVISIBLE"))
+	                       		out.println("<i class=\"fa fa-circle dropdown-toggle\"></i>&nbsp;<span id=\"dropdown_title\">" + loggedUser.getStatusString() + "</span><span class=\"caret\"></span></a>");                        
+                        %>
+                        
                     <ul ID="divNewNotifications" class="dropdown-menu">
                             <li><a class="fa fa-circle text-green" onClick="changeStatus('ONLINE', <% out.print(loggedUser.getId()); %> )"> Online</a>
                             <li><a class="fa fa-circle text-red" onClick="changeStatus('BUSY', <% out.print(loggedUser.getId()); %> )"> Ocupado</a>
