@@ -36,8 +36,8 @@ public class RemoveContactServlet extends HttpServlet{
     	int userId = Integer.parseInt(loginCookie.getValue());
     	
     	ContactListDao contactListDao = new ContactListDao();
-    	ArrayList<ContactList> contactListRequest = new ArrayList<ContactList>();
-    	contactListRequest = contactListDao.getContactListRequest(userId);
+    	ArrayList<User> contacts = new ArrayList<User>();
+    	contacts = contactListDao.getContacts(userId);
     	
     	UserDao userDao = new UserDao();
     	PrintWriter out= response.getWriter();
@@ -47,8 +47,8 @@ public class RemoveContactServlet extends HttpServlet{
 			
 			int flag = 0;
 			int contactId = contact.getId();
-			for(ContactList list : contactListRequest){
-				if(contactId == list.getContactId()){
+			for(User aux : contacts){
+				if(contactId == aux.getId()){
 					flag = 1;
 					break;
 				}
@@ -57,7 +57,7 @@ public class RemoveContactServlet extends HttpServlet{
 			if(flag == 0){
 				out.println("<script type=\"text/javascript\">");
 		        out.println("alert('Você não possui este contato. Tente novamente.');");
-		        out.println("location='RemoveContact.jsp';");
+		        out.println("location='removeContact.jsp';");
 		        out.println("</script>");
 			}
 			if(flag == 1)
@@ -73,8 +73,8 @@ public class RemoveContactServlet extends HttpServlet{
 			
 			int flag = 0;
 			int contactId = contact.getId();
-			for(ContactList list : contactListRequest){
-				if(contactId == list.getContactId()){
+			for(User aux : contacts){
+				if(contactId == aux.getId()){
 					flag = 1;
 					break;
 				}
@@ -83,7 +83,7 @@ public class RemoveContactServlet extends HttpServlet{
 			if(flag == 0){
 				out.println("<script type=\"text/javascript\">");
 		        out.println("alert('Você não possui este contato. Tente novamente.');");
-		        out.println("location='RemoveContact.jsp';");
+		        out.println("location='removeContact.jsp';");
 		        out.println("</script>");
 			}
 			if(flag == 1)
