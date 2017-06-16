@@ -321,35 +321,6 @@
 <script src="javascript/adminlte.min.js"></script>
 </body>
 
-<script language="javascript">
-	function validateSecurityFields(){		
-		var valid = true;
-		if(document.getElementById('currentPassword').value == "" || 
-	   	document.getElementById('newPassword').value == "" ||
-	   	document.getElementById('newPasswordConfirmation').value == ""){
-	   		valid = false;
-			alert("Todos os campos são obrigatórios!");
-		}
-		
-		if(document.getElementById('newPassword').value !=
-				document.getElementById('newPasswordConfirmation').value){
-			valid = false;
-			alert("Senhas não coincidem! Por favor, tente novamente.");
-		}
-		return valid;
-	}
-	
-	function validatePersonalInfoFields(){		
-		var valid = true;
-		if(document.getElementById('newName').value == "" || 
-	   	document.getElementById('newUserName').value == "" ||
-	   	document.getElementById('newEmail').value == ""){
-	   		valid = false;
-			alert("Todos os campos são obrigatórios!");
-		}
-		return valid;
-	}
-</script>
 <script>
   $('.dropdown-toggle').dropdown();
 
