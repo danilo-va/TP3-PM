@@ -221,7 +221,7 @@
 	                       		out.println("<i class=\"fa fa-circle text-red dropdown-toggle\"></i>&nbsp;<span id=\"dropdown_title\">" + loggedUser.getStatusString() + "</span><span class=\"caret\"></span></a>");
 	                       	else if(loggedUser.getStatus().equals("AWAY"))
 	                       		out.println("<i class=\"fa fa-circle text-yellow dropdown-toggle\"></i>&nbsp;<span id=\"dropdown_title\">" + loggedUser.getStatusString() + "</span><span class=\"caret\"></span></a>");
-	                       	else if(loggedUser.getStatus().equals("IVISIBLE"))
+	                       	else if(loggedUser.getStatus().equals("INVISIBLE"))
 	                       		out.println("<i class=\"fa fa-circle dropdown-toggle\"></i>&nbsp;<span id=\"dropdown_title\">" + loggedUser.getStatusString() + "</span><span class=\"caret\"></span></a>");                        
                         %>
                         
