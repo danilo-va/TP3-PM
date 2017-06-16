@@ -12,6 +12,7 @@ import models.Message;
 
 public class MessageDao {
 private Connection connection;
+//private PreparedStatement stmt;
 	
 	public MessageDao(){
 		this.connection = new ConnectionFactory().getConnection();
@@ -40,7 +41,38 @@ private Connection connection;
 		}
 	}
 	
-	public ArrayList<String> getUnreadMessages(int userId, int contactId){
+	public ArrayList<Message> getAllUnreadMessages(int userId){
+		ArrayList<Message> messages = new ArrayList<Message>();
+		String sql = "SELECT * FROM message WHERE recipient_id = ? AND delivered = 0";
+		PreparedStatement stmt = null;
+		try {
+			stmt = this.connection.prepareStatement(sql);
+			stmt.setInt(1, userId);			
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Message m = new Message();
+				m.setId(Integer.parseInt(rs.getString("id")));
+				m.setSenderId(Integer.parseInt(rs.getString("sender_id")));
+				m.setRecipientId(Integer.parseInt(rs.getString("recipient_id")));
+				m.setContent(rs.getString("content"));
+				m.setDelivery_time(rs.getTimestamp("delivery_time"));
+				m.setDelivered(rs.getBoolean("delivered"));
+				messages.add(m);
+			}
+			return messages;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally{
+			try {
+				stmt.close();
+				this.connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
+	
+	public ArrayList<String> getUnreadMessagesFromContact(int userId, int contactId){
 		ArrayList<String> messages = new ArrayList<String>();
 		ArrayList<Integer>messagesDelivered = new ArrayList<Integer>();
 		String sql = "SELECT * FROM message WHERE sender_id = " + contactId + " AND recipient_id = " + userId + " AND delivered = 0";

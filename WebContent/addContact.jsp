@@ -2,6 +2,8 @@
 			models.User,
 			models.ContactList,
 			dao.ContactListDao,
+			models.Message,
+			dao.MessageDao,
 			java.util.ArrayList,
 			java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
@@ -81,30 +83,43 @@
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
+            <%
+	            MessageDao msgDao = new MessageDao();
+	          	ArrayList<Message> unreadMessages = msgDao.getAllUnreadMessages(loggedUser.getId());
+            %>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">1</span>
+              <span class="label label-success"><% out.print(unreadMessages.size()); %></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header text-center"><b>Conversas</b></li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="chat.jsp">
-                      <div class="pull-left">
-                        <img src="img/manoel.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Manoel Júnior
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Você é muito legal!</p>
-                    </a>
-                  </li>
+                  <%
+                  	if(unreadMessages.size()!= 0)
+	                  	for(Message message : unreadMessages){
+	                  		User u = dao.getUser(message.getSenderId());
+	                  		//System.out.println(message.getDelivery_time());
+	                  		out.println("<li>");
+	                  		out.println("<a href=chat.jsp?userId=" + loggedUser.getId() + "&contactId=" + u.getId() + ">");
+	                        out.println("<div class=\"pull-left\">");
+	                        out.println("<img src=\"img/" + u.getPhotoFile() + "\" class=\"img-circle\" alt=\"User Image\">");  
+	                        out.println("</div>");    
+	                        out.println("<h4>");
+	                        out.println(u.getName());
+	                        out.println("<small><i class=\"fa fa-clock-o\"></i>" + new SimpleDateFormat("dd/MM HH:mm").format(message.getDelivery_time().getTime()) + "</small>");  
+	                        out.println("</h4>");    
+	                        out.println("<p>" + message.getContent() + "</p>");    
+	                        out.println("</a>");  
+	                        out.println("</li>");
+	                  	}
+                  	else
+                  		out.println("<p align=\"center\">Não há novas mensagens</p>");
+                  %>
                 </ul>
               </li>
-              <li class="footer"><a href="#">Ver tudo</a></li>
+              <!-- <li class="footer"><a href="#">Ver tudo</a></li> -->
             </ul>
           </li>
 
@@ -125,7 +140,8 @@
                 <ul class="menu">
                   <!-- ------------------------------------------- -->
                   <%                                  	  
-	              	  for(ContactList req : requests){
+                  	if(requests.size()!=0)
+                  		for(ContactList req : requests){
 	                  		out.println("<li><!-- start message -->");
 	                  		out.println("<a>");
 	                  		out.println("<div class=\"pull-left\">");
@@ -146,11 +162,13 @@
 	                  		out.println("</a>");
 	                  		out.println("</li>");                  
 	                   }
+                  	else
+	              		out.println("<p align=\"center\">Não há novas solicitações</p>");
                   %>
                   <!-- ------------------------------------------- -->
                 </ul>
               </li>
-              <li class="footer"><a href="#">Ver tudo</a></li>
+              <!-- <li class="footer"><a href="#">Ver tudo</a></li> -->
             </ul>
           </li>
           <!-- Tasks: style can be found in dropdown.less -->

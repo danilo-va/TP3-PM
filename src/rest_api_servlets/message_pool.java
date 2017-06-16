@@ -21,7 +21,7 @@ public class message_pool extends HttpServlet{
 		
 		ArrayList<String> messages = new ArrayList<String>();
 		MessageDao dao = new MessageDao();
-		messages = dao.getUnreadMessages(userId, contactId);
+		messages = dao.getUnreadMessagesFromContact(userId, contactId);
 		for(int i=0; i<messages.size(); i++){
 			if(i!=messages.size()-1)
 				messagesJson += ("\"" + i + "\":\"" + messages.get(i) + "\",");
