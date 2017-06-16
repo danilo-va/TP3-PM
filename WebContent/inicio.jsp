@@ -208,12 +208,12 @@
                 <ul >
                 <li class="dropdown active span8">
                     <a class="dropdown-toggle" id="inp_impact" data-toggle="dropdown">
-                        <i class="fa fa-circle text-success dropdown-toggle"></i>&nbsp;<span id="dropdown_title"> Online</span><span class="caret"></span></a>
+                        <i class="fa fa-circle text-success dropdown-toggle"></i>&nbsp;<span id="dropdown_title"><% out.print(loggedUser.getStatusString()); %></span><span class="caret"></span></a>
                     <ul ID="divNewNotifications" class="dropdown-menu">
-                            <li><a class="fa fa-circle text-success" href="#"> Online</a>
-                            <li><a class="fa fa-circle text-danger" href="#"> Ocupado</a></li>       
-                            <li><a class="fa fa-circle text-warning" href="#"> Ausente</a></li>      
-                            <li><a class="fa fa-circle" href="#"> Invisível</a></li>  
+                            <li><a class="fa fa-circle text-green" onClick="changeStatus('ONLINE', <% out.print(loggedUser.getId()); %> )"> Online</a>
+                            <li><a class="fa fa-circle text-red" onClick="changeStatus('BUSY', <% out.print(loggedUser.getId()); %> )"> Ocupado</a>
+                            <li><a class="fa fa-circle text-yellow" onClick="changeStatus('AWAY', <% out.print(loggedUser.getId()); %> )"> Ausente</a>
+                            <li><a class="fa fa-circle" onClick="changeStatus('INVISIBLE', <% out.print(loggedUser.getId()); %> )"> Offline</a>
                     </ul>
                 </li>
             </ul>
@@ -237,10 +237,9 @@
           <ul class="treeview-menu"> <!-- COLOCAR OS CONTATOS ONLINE -->
 	        <%
 	        	ArrayList<User> contacts = clDao.getContacts(loggedUser.getId());
-	        	//String user_status = "busy";
 	        	if(contacts.size() != 0){
 	        		for(User contact : contacts){
-	        			System.out.println(contact.getStatus());
+	        			//System.out.println(contact.getStatus());
 	        			if(contact.getStatus().equals("ONLINE"))
 		        			out.println("<li><a href=\"chat.jsp?userId=" + loggedUser.getId() + "&contactId=" + contact.getId() +"\"><i class=\"fa fa-circle text-green \"></i> <span>" + contact.getName() + "</span></a></li>");
 		        		if(contact.getStatus().equals("BUSY"))
@@ -561,6 +560,15 @@
 <script src="javascript/adminlte.min.js"></script>
 </body>
 <script>
+	function changeStatus(status, userId){
+		$.ajax({
+	        url:("http://localhost:8080/messenger/change_status?userId=" + userId + "&status=" + status),
+	        type: 'post',
+	        success:function(response){
+	        	alert("Status alterado com sucesso.");
+	        }
+	    });
+	}
   $('.dropdown-toggle').dropdown();
 
 

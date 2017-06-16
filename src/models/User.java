@@ -57,6 +57,19 @@ public class User {
 	public String getStatus() {
 		return status;
 	}
+	public String getStatusString() {
+		switch(this.status){
+			case "ONLINE":
+				return "Online";
+			case "BUSY":
+				return "Ocupado";
+			case "AWAY":
+				return "Ausente";
+			case "INVISIBLE":
+				return "Offline";
+		}
+		return status;
+	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
