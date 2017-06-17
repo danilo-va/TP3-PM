@@ -62,7 +62,7 @@ public class RemoveContactServlet extends HttpServlet{
 			}
 			if(flag == 1)
 			{	
-				contactListDao.deleteContactRequest(contactId);
+				// FALTA REMOVER AQUI
 				out.println("<script type=\"text/javascript\">");
 		        out.println("alert('Usuário deletado com sucesso! ');");
 		        out.println("location='inicio.jsp';");
@@ -88,7 +88,8 @@ public class RemoveContactServlet extends HttpServlet{
 			}
 			if(flag == 1)
 			{	
-				contactListDao.deleteContactRequest(contactId);
+				// FALTA REMOVER AQUI
+				contacts.de
 				out.println("<script type=\"text/javascript\">");
 		        out.println("alert('Usuário deletado com sucesso! ');");
 		        out.println("location='inicio.jsp';");
