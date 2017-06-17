@@ -152,4 +152,24 @@ public class ContactListDao {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	// aqui, socorro ???
+	public void deleteContact(int reqId){
+		String sql1 = "UPDATE contact_list SET accepted = '0' WHERE contact_list.id = ?";
+		ContactList cl = this.getContactList(reqId);
+		System.out.println(cl.getId());
+		String sql2 = "INSERT INTO contact_list(user_id, contact_id, accepted) VALUES (?, ?, 0);";
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement(sql1);
+			stmt.setInt(1, reqId);
+			stmt.executeUpdate();
+			stmt = this.connection.prepareStatement(sql2);
+			stmt.setInt(1, cl.getContactId());
+			stmt.setInt(2, cl.getUserId());
+			stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
