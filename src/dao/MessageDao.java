@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import jdbc.ConnectionFactory;
 import models.Message;
+import models.User;
 
 public class MessageDao {
 private Connection connection;
@@ -140,6 +141,32 @@ private Connection connection;
 				messages.add(m);
 			}
 			return messages;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally{
+			try {
+				stmt.close();
+				this.connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
+	
+	public ArrayList<User> getRecentUsers(int userId){
+		ArrayList<User> users = new ArrayList<User>();
+		String sql = "SELECT DISTINCT sender_id FROM (SELECT sender_id FROM message WHERE recipient_id = ? ORDER BY delivery_time ASC) AS recent_messsages";
+		UserDao uDao = new UserDao();
+		PreparedStatement stmt = null;
+		try {
+			stmt = this.connection.prepareStatement(sql);
+			stmt.setInt(1, userId);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				User u = uDao.getUser(rs.getInt("sender_id"));
+				users.add(u);
+			}
+			return users;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally{
