@@ -178,7 +178,9 @@ public class ContactListDao {
 		}
 	}
 	
-	// aqui, socorro ???
+	/*
+	* This method recieves a requisition id and deletes the contact
+	*/
 	public void deleteContact(int reqId){
 		String sql1 = "UPDATE contact_list SET accepted = '0' WHERE contact_list.id = ?";
 		ContactList cl = this.getContactList(reqId);
