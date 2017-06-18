@@ -17,6 +17,9 @@ public class UserDao {
 		this.connection = new ConnectionFactory().getConnection();
 	}
 	
+	/*
+	* This method recieves a user and adds to the database
+	*/
 	public void addUser(User user){
 		String sql = "INSERT INTO user "
 				+ "(name, user_name, email, password_hash, registration_date, photo_file) "+
@@ -42,6 +45,9 @@ public class UserDao {
 		}
 	}
 	
+	/*
+	* This method authenticates a user with username and password
+	*/
 	public User authUser(String userName, String password){
         String passwordHash = Hashing.getMD5Hash(password);
 		PreparedStatement stmt;
@@ -69,6 +75,9 @@ public class UserDao {
 		}
 	}
 
+	/*
+	* This method recieves user id and returns a user
+	*/
 	public User getUser(int userID){
 		PreparedStatement stmt;
 		try {
@@ -97,6 +106,9 @@ public class UserDao {
 		}
 	}
 	
+	/*
+	* This method recieves a username and returns a user
+	*/
 	public User getUserByUserName(String userName){
 		PreparedStatement stmt;
 		try {
@@ -125,6 +137,9 @@ public class UserDao {
 		}
 	}
 	
+	/*
+	* This method recieves an email and returns a user 
+	*/
 	public User getUserByEmail(String email){
 		PreparedStatement stmt;
 		try {
@@ -153,6 +168,9 @@ public class UserDao {
 		}
 	}
 
+	/*
+	* This method updates the info for a user.
+	*/
 	public void updateUserInfo(User user){
 		String sql = "UPDATE user SET name = ?, user_name = ?, email = ? WHERE user.id = ?;";
 		// Prepared statement to update
@@ -171,6 +189,9 @@ public class UserDao {
 		}
 	}
 	
+	/*
+	* This method recieves a user changes it's password
+	*/
 	public void updateUserPassword(User user){
 		String sql = "UPDATE user SET password_hash = ? WHERE user.id = ?;";
 		try {
@@ -187,6 +208,9 @@ public class UserDao {
 		}
 	}
 	
+	/*
+	* This method recieves a user changes it's status
+	*/
 	public void updateUserStatus(int userID, String status){
 		String sql = "UPDATE user SET status = ? WHERE user.id = ?;";
 		try {
