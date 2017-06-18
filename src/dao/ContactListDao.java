@@ -16,7 +16,10 @@ public class ContactListDao {
 	public ContactListDao(){
 		this.connection = new ConnectionFactory().getConnection();
 	}
-	
+	/*
+	 * This method receive an object of tpye ContactList and store the contact
+	 * request in the database.
+	 */
 	public void recordContactRequest(ContactList contactList){
 		String sql = "INSERT INTO contact_list "
 				+ "(user_id, contact_id, accepted) "+
@@ -38,6 +41,10 @@ public class ContactListDao {
 		}
 	}
 	
+	/*
+	 * This method retrieves the contact list of a given user, taking his/her id
+	 * as the parameter and returning an ArrayList containing objects of type ContactList
+	 */
 	public ArrayList<ContactList> getContactListRequest(int userId){
 		ArrayList<ContactList> contactListRequest = new ArrayList<ContactList>();
 		PreparedStatement stmt;
@@ -62,6 +69,10 @@ public class ContactListDao {
 		}
 	}
 	
+	/*
+	 * This method retrieves the contact requests for a given user, taking the userId as 
+	 * parameter and returning a list of User(s) that requested contact. 
+	 */
 	public ArrayList<User> getContactsRequest(int userId){
 		ArrayList<User> contactsRequest = new ArrayList<User>();
 		PreparedStatement stmt;
@@ -81,6 +92,9 @@ public class ContactListDao {
 		}
 	}
 	
+	/*
+	 * This method returns the contacts of a given user, returning a list of User(s)
+	 */
 	public ArrayList<User> getContacts(int userId){
 		ArrayList<User> contacts = new ArrayList<User>();
 		PreparedStatement stmt;
@@ -101,6 +115,10 @@ public class ContactListDao {
 		}
 	}
 	
+	/*
+	 * This method retrieves an object of type ContactList taking it's ID as
+	 * the parameter. 	
+	 */
 	public ContactList getContactList(int clId){
 		String sql = "SELECT * FROM contact_list WHERE id = ?";
 		PreparedStatement stmt;
@@ -122,6 +140,10 @@ public class ContactListDao {
 		}
 	}
 	
+	/*
+	 * This method execute the action of accepting a contact request. Two queries are performed 
+	 * in order to establish the 'friendship' for both users.
+	 */
 	public void acceptContactRequest(int reqId){
 		String sql1 = "UPDATE contact_list SET accepted = '1' WHERE contact_list.id = ?";
 		ContactList cl = this.getContactList(reqId);
@@ -141,6 +163,9 @@ public class ContactListDao {
 		}
 	}
 	
+	/*
+	 * This method deletes a contact request.
+	 */
 	public void deleteContactRequest(int reqId){
 		String sql = "DELETE FROM `contact_list` WHERE `id` = ?";
 		try {
