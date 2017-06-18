@@ -66,7 +66,7 @@ private Connection connection;
 		}finally{
 			try {
 				stmt.close();
-				this.connection.close();
+				//this.connection.close();
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
 			}
@@ -90,7 +90,7 @@ private Connection connection;
 		}finally{
 			try {
 				stmt.close();
-				this.connection.close();
+				//this.connection.close();
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
 			}
@@ -109,7 +109,7 @@ private Connection connection;
 			}finally{
 				try {
 					stmt.close();
-					this.connection.close();
+					//this.connection.close();
 				} catch (SQLException e) {
 					throw new RuntimeException(e);
 				}
@@ -146,7 +146,7 @@ private Connection connection;
 		}finally{
 			try {
 				stmt.close();
-				this.connection.close();
+				//this.connection.close();
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
 			}
@@ -172,7 +172,7 @@ private Connection connection;
 		}finally{
 			try {
 				stmt.close();
-				this.connection.close();
+				//this.connection.close();
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
 			}
