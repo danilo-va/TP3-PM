@@ -15,6 +15,9 @@ import models.User;
 @WebServlet("/getUserInfo")
 public class get_user_info extends HttpServlet{
 	@Override
+	/*
+	 * This method gets user's information
+	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int userID = Integer.parseInt(request.getParameter("userID"));
 		PrintWriter out = response.getWriter();

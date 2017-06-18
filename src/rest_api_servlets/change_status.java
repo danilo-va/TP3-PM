@@ -13,6 +13,9 @@ import dao.UserDao;
 @WebServlet("/change_status")
 public class change_status extends HttpServlet{
 	@Override
+	/*
+	 * This method change the user status between 'online' and 'offline', when he login and logout the Messennger
+	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int userID = Integer.parseInt(request.getParameter("userId"));
 		String newStatus = request.getParameter("status");

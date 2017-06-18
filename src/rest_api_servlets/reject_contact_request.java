@@ -14,6 +14,9 @@ import dao.ContactListDao;
 @WebServlet("/rejectContactRequest")
 public class reject_contact_request extends HttpServlet{
 	@Override
+	/*
+	 * This method is called when an user does not accept other as a friend
+	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int requestID = Integer.parseInt(request.getParameter("reqId"));
 		PrintWriter out= response.getWriter();

@@ -15,6 +15,9 @@ import models.Message;
 @WebServlet("/chat_process")
 public class chat_process extends HttpServlet{
 	@Override
+	/*
+	 * This method saves the messages on the database
+	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String senderId = request.getParameter("userId");
 		String recipientId = request.getParameter("contactId");

@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class ConnectionFactory {
+	/*
+	 * This method creates connection to the database
+	 */
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
