@@ -14,6 +14,9 @@ import dao.MessageDao;
 @WebServlet("/message_pool")
 public class message_pool extends HttpServlet{
 	@Override
+	/*
+	 * This method saves on a JSON file the message
+	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		int contactId = Integer.parseInt(request.getParameter("contactId"));
