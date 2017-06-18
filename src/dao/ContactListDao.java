@@ -178,19 +178,18 @@ public class ContactListDao {
 		}
 	}
 	
-	// aqui, socorro ???
-	public void deleteContact(int reqId){
-		String sql1 = "UPDATE contact_list SET accepted = '0' WHERE contact_list.id = ?";
-		ContactList cl = this.getContactList(reqId);
-		System.out.println(cl.getId());
-		String sql2 = "INSERT INTO contact_list(user_id, contact_id, accepted) VALUES (?, ?, 0);";
+	/*
+	* This method recieves a requisition id and deletes the contact
+	*/
+	public void deleteContact(int userId, int contactId){
+		String sql = "DELETE FROM contact_list WHERE user_id = ? AND contact_id = ?";
 		try {
-			PreparedStatement stmt = this.connection.prepareStatement(sql1);
-			stmt.setInt(1, reqId);
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			stmt.setInt(1, userId);
+			stmt.setInt(2, contactId);
 			stmt.executeUpdate();
-			stmt = this.connection.prepareStatement(sql2);
-			stmt.setInt(1, cl.getContactId());
-			stmt.setInt(2, cl.getUserId());
+			stmt.setInt(1, contactId);
+			stmt.setInt(2, userId);
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {

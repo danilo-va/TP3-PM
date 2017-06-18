@@ -314,19 +314,13 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-body">
-        	<h4 class="box-title">Selecione o contato que será removido</h4>
+        	<h4 class="box-title">Insira o nome de usuário do contato que deseja remover</h4>
         	<form action="RemoveContactServlet" method="post" onsubmit="return validateSecurityFields(this)">
         		<input class="form-control" placeholder="Usuário" name="userNameToRemove" id="userNameToRemove">
         		<br>
         		<button type="submit" class="btn btn-default btn-flat">Pesquisar</button> 
         	</form>
         	<hr>
-        	<h4 class="box-title">Remover por endereço de e-mail</h4>
-        	<form action="AddContactServlet" method = "post" onsubmit="return validatePersonalInfoFields(this)">
-        		<input class="form-control" placeholder="E-mail" name="userEmailToRemove" id="userEmailToRemove"> 
-        		<br>
-        		<button type="submit" class="btn btn-default btn-flat">Pesquisar</button>
-        	</form>
         </div>
         <!-- /.box-body -->
       </div>
