@@ -178,6 +178,9 @@ public class ContactListDao {
 		}
 	}
 	
+	/*
+	* This method recieves a requisition id and deletes the contact
+	*/
 	public void deleteContact(int userId, int contactId){
 		String sql = "DELETE FROM contact_list WHERE user_id = ? AND contact_id = ?";
 		try {

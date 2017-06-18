@@ -18,7 +18,9 @@ private Connection connection;
 	public MessageDao(){
 		this.connection = new ConnectionFactory().getConnection();
 	}
-	
+	/*
+	* This method recieves a message and stores it to the database
+	*/
 	public void recordMessage(Message message){
 		String sql = "INSERT INTO message "
 				+ "(sender_id, recipient_id, content, delivery_time) "+
@@ -41,7 +43,9 @@ private Connection connection;
 			throw new RuntimeException(e);
 		}
 	}
-	
+	/*
+	* This method recieves a user and returns all it's unread messages
+	*/
 	public ArrayList<Message> getAllUnreadMessages(int userId){
 		ArrayList<Message> messages = new ArrayList<Message>();
 		String sql = "SELECT * FROM message WHERE recipient_id = ? AND delivered = 0";
@@ -73,6 +77,9 @@ private Connection connection;
 		}
 	}
 	
+	/*
+	* This method recieves a user and a contact and returns all unread messages from that contact
+	*/
 	public ArrayList<String> getUnreadMessagesFromContact(int userId, int contactId){
 		ArrayList<String> messages = new ArrayList<String>();
 		ArrayList<Integer>messagesDelivered = new ArrayList<Integer>();
@@ -119,6 +126,9 @@ private Connection connection;
 		return messages;
 	}
 	
+	/*
+	* This method recieves a user and a contact and returns all previous messages
+	*/
 	public ArrayList<Message> getPreviousMessages(int userId, int contactId){
 		ArrayList<Message> messages = new ArrayList<Message>();
 		String sql = "SELECT * FROM message WHERE ((sender_id = ? AND recipient_id = ?) OR (sender_id = ? AND recipient_id = ?)) ORDER BY delivery_time";
@@ -153,6 +163,9 @@ private Connection connection;
 		}
 	}
 	
+	/*
+	* This method recieves a user and returns all last contacts 
+	*/
 	public ArrayList<User> getRecentUsers(int userId){
 		ArrayList<User> users = new ArrayList<User>();
 		String sql = "SELECT DISTINCT sender_id FROM (SELECT sender_id FROM message WHERE recipient_id = ? ORDER BY delivery_time ASC) AS recent_messsages";
