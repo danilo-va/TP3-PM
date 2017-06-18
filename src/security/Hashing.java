@@ -4,6 +4,9 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/*
+ * This method implements the MD5 algorithm, to make the password safer.
+ */
 public class Hashing {
 	public static String getMD5Hash(String str){
 		MessageDigest m = null;

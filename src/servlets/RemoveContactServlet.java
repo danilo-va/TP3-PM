@@ -19,6 +19,10 @@ import models.User;
 @WebServlet("/RemoveContactServlet")
 public class RemoveContactServlet extends HttpServlet{
 	@Override
+	/*
+	 * This method remove the friendship between an user with another, when requested. Here also is verified if there is an user 
+	 * with the username/email searched 
+	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userNameToRemove = request.getParameter("userNameToRemove");
 		String userEmailToRemove = request.getParameter("userEmailToRemove");

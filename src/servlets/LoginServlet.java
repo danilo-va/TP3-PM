@@ -18,6 +18,9 @@ public class LoginServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	@Override
+	/*
+	 * This method check if the username and the password are correct to someone connect into the Messenger
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get request parameters received from the login form
 		String userNameProvided = request.getParameter("user");

@@ -18,6 +18,10 @@ import models.User;
 @WebServlet("/AddContactServlet")
 public class AddContactServlet extends HttpServlet{
 	@Override
+	/*
+	 * This method connect an user with another, when one accept the friend request. Here also is verified if there is an user 
+	 * with the username/email searched 
+	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userNameToAdd = request.getParameter("userNameToAdd");
 		String userEmailToAdd = request.getParameter("userEmailToAdd");

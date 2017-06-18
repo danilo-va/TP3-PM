@@ -17,6 +17,9 @@ import security.Hashing;
 @WebServlet("/UpdateUserPasswordServlet")
 public class UpdateUserPasswordServlet extends HttpServlet{
 	@Override
+	/*
+	 * Update the password when the user request
+	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// busca o writer
         PrintWriter out = response.getWriter();

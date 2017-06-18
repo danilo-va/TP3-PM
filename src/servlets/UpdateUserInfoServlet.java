@@ -16,6 +16,9 @@ import models.User;
 @WebServlet("/UpdateUserInfoServlet")
 public class UpdateUserInfoServlet extends HttpServlet{
 	@Override
+	/*
+	 * Update the user's information
+	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// busca o writer
         PrintWriter out = response.getWriter();

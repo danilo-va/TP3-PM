@@ -14,6 +14,9 @@ import dao.UserDao;
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet{
 	@Override
+	/*
+	 * This method logout the person from the Messenger, so his status turns to 'invisible'
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
     	Cookie loginCookie = null;

@@ -19,6 +19,9 @@ public class AddUserServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	@Override
+	/*
+	 * This method add a new user to the database.
+	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// busca o writer
         PrintWriter out = response.getWriter();
