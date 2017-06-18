@@ -318,11 +318,7 @@
               <!-- USERS LIST -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Chats recentes</h3>
-
-                  <!--  <div class="box-tools pull-right">
-                    <span class="label label-success">8 novos membros</span>
-                  </div>-->
+                  <h3 class="box-title">Conversas recentes</h3>                  
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
@@ -348,11 +344,6 @@
                   </ul>
                   <!-- /.users-list -->
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer text-center">
-                  <a href="javascript:void(0)" class="uppercase">View All Users</a>
-                </div>
-                <!-- /.box-footer -->
               </div>
               <!--/.box -->
             </div>

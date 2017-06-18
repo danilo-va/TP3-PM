@@ -21,7 +21,6 @@ public class RemoveContactServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userNameToRemove = request.getParameter("userNameToRemove");
-		String userEmailToRemove = request.getParameter("userEmailToRemove");
 		
 		Cookie loginCookie = null;
     	Cookie[] cookies = request.getCookies();
@@ -35,66 +34,30 @@ public class RemoveContactServlet extends HttpServlet{
 	    }
     	int userId = Integer.parseInt(loginCookie.getValue());
     	
-    	ContactListDao contactListDao = new ContactListDao();
-    	ArrayList<User> contacts = new ArrayList<User>();
-    	contacts = contactListDao.getContacts(userId);
-    	
+    	ContactListDao clDao = new ContactListDao();
     	UserDao userDao = new UserDao();
-    	PrintWriter out= response.getWriter();
+    	ArrayList<User> contacts = clDao.getContacts(userId);
+    	boolean contactFound = false;
     	
-		if(userNameToRemove != null){			
-			User contact = userDao.getUserByUserName(userNameToRemove);
-			
-			int flag = 0;
-			int contactId = contact.getId();
-			for(User aux : contacts){
-				if(contactId == aux.getId()){
-					flag = 1;
-					break;
-				}
-			}
-					
-			if(flag == 0){
-				out.println("<script type=\"text/javascript\">");
-		        out.println("alert('Você não possui este contato. Tente novamente.');");
-		        out.println("location='removeContact.jsp';");
-		        out.println("</script>");
-			}
-			if(flag == 1)
-			{	
-				// FALTA REMOVER AQUI
-				out.println("<script type=\"text/javascript\">");
-		        out.println("alert('Usuário deletado com sucesso! ');");
-		        out.println("location='inicio.jsp';");
-		        out.println("</script>");
-			}
-		}else if(userEmailToRemove != null){
-			User contact = userDao.getUserByEmail(userEmailToRemove);
-			
-			int flag = 0;
-			int contactId = contact.getId();
-			for(User aux : contacts){
-				if(contactId == aux.getId()){
-					flag = 1;
-					break;
-				}
-			}
-					
-			if(flag == 0){
-				out.println("<script type=\"text/javascript\">");
-		        out.println("alert('Você não possui este contato. Tente novamente.');");
-		        out.println("location='removeContact.jsp';");
-		        out.println("</script>");
-			}
-			if(flag == 1)
-			{	
-				// FALTA REMOVER AQUI
-				contacts.de
-				out.println("<script type=\"text/javascript\">");
-		        out.println("alert('Usuário deletado com sucesso! ');");
-		        out.println("location='inicio.jsp';");
-		        out.println("</script>");
-			}
-		}
+    	for(User u : contacts){
+    		if(u.getUserName().equals(userNameToRemove)){
+    			contactFound = true;
+    			clDao.deleteContact(userId, u.getId());
+    		}
+    	}
+    			
+    	PrintWriter out= response.getWriter();
+		if(contactFound){
+			out.println("<script type=\"text/javascript\">");
+	        out.println("alert('Usuário deletado com sucesso! ');");
+	        out.println("location='inicio.jsp';");
+	        out.println("</script>");
+		}else{
+			out.println("<script type=\"text/javascript\">");
+	        out.println("alert('Você não possui este contato. Tente novamente.');");
+	        out.println("location='removeContact.jsp';");
+	        out.println("</script>");
+		}	
+		
 	}
 }
